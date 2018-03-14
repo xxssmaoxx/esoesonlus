@@ -1,0 +1,48 @@
+#testo{
+  width:100%;
+}
+#invia{
+  margin:auto;
+}
+form{
+  text-align:left;
+}  
+label ,input{
+  font-weight:bold;
+  margin-bottom: 20px;
+  display:block;
+}
+input{
+  font-weight : normal;
+}
+.center{
+  display:block;
+  margin:auto;
+  text-align:center;
+}
+.formatter{
+  display: inline-block;
+  width: 30px;
+  height: 30px;
+  border-radius: 5px;
+  border: 1px solid black;
+  cursor: pointer;
+  margin-right: 2px;
+  text-align: center;
+  line-height: 30px;
+}
+#testo{
+  height: 500px;
+  overflow-y: scroll;
+}
+.fa-image{
+  font-size: 9em;
+  color: #337AB7;
+  transition: 0.4s;
+}
+.fa-image:hover{
+  color: #CCC; 
+}
+.active{
+  background: #aaa;
+}

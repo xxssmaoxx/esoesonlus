@@ -1,0 +1,20 @@
+#header {
+	background-image:url("../img/others/ilGuatemala1.jpg");
+}
+.content{
+	margin: 3% 0;
+	text-align: left;
+}
+.sezione{ 
+	width: 30%;
+	display: inline-table;
+	vertical-align: top;
+}
+.sezione_text{
+	width: 65%;
+	display: inline-table;
+	vertical-align: top;
+}
+.sezione img{
+	width: 100%; 
+}

@@ -1,0 +1,42 @@
+.articolo{
+	margin-bottom: 10%;
+}
+
+.img-articolo{
+	width: 100%;
+}
+
+.inline{
+	margin-top: 2%;
+	width: 100%;
+	text-align: center;
+	display: inline-block;
+}
+
+.show-text{
+	width: 50px;
+	height: 50px;
+	float: right;
+	text-align: center;
+	opacity: 0.5;
+	border-radius: 10px;
+	background-color: black;
+	font-size: 3rem;
+	cursor: pointer;
+}
+
+.hide-text{
+	width: 50px;
+	height: 50px;
+	float: right;
+	text-align: center;
+	border-radius: 10px;
+	background-color: black;
+	font-size: 3rem;
+	cursor: pointer;
+	opacity: 0.5;
+}
+
+.testo{
+	display: none;
+}

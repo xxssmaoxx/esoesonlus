@@ -1,0 +1,44 @@
+#intro{
+	text-align:center;
+	font-size: 20px;
+	margin: 0;
+}
+#container{
+	margin: 3% 3%;
+	text-align: center;
+}
+
+#container a{
+	text-decoration: none;
+}
+
+.sezione{
+	margin: 1.5%;
+	border-radius: 12px;
+	box-shadow: 2px 4px 7px #AAAFFF;
+	font-family: inherit;
+	padding:0%;
+	min-width:250px;
+    display:inline-table;
+    width:30%;
+    vertical-align: top;
+}
+
+.sezione:hover{
+	box-shadow: 3px 6px 12px #002F4F;
+}
+
+.sezione img{
+	border-radius: 12px;
+    width:100%;
+}
+      
+.small{
+	font-size: 0.9em;
+	color: black;
+	margin: 5%;
+}      
+
+#header {
+	background-image: url("../img/home/home-page1.jpg");
+}

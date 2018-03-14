@@ -1,0 +1,32 @@
+button {
+    display: block;
+    margin: 2px;
+}
+
+.img-profilo {
+    width: 50%;
+    margin-bottom: 2%;
+}
+
+.right {
+    text-align: right;
+}
+
+
+#pwd {
+    margin: 5% 15%;
+    padding: 5%;
+    background-color: #D6D2D1;
+    border-radius: 8px;
+}
+
+.text_input{
+    display: block;
+    width: 100%;
+    max-width: 300px;
+    margin:auto;
+}
+
+.center{
+    margin: auto;
+}
