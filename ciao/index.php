@@ -1,0 +1,1 @@
+<!DOCTYPE html><html><head><meta charset="utf-8"><?php include "../utilities/imports.html" ?><link href='./style.css' rel='stylesheet' /><title>ESO ES Onlus | Archivio progetti</title></head><body><?php include "../utilities/menu.php"; ?><div class="container"><p>prova</p></div><?php include "../utilities/footer.html"; ?></body></html>
