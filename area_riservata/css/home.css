@@ -8,11 +8,6 @@ button {
     margin-bottom: 2%;
 }
 
-.right {
-    text-align: right;
-}
-
-
 #pwd {
     margin: 5% 15%;
     padding: 5%;
@@ -29,4 +24,27 @@ button {
 
 .center{
     margin: auto;
+}
+
+
+#mail{
+    display: inline-block;
+    margin-top: 20px;
+}
+
+#change-mail{
+    display: inline-block;
+    margin-bottom: 20px;
+}
+
+#cancel-mail{
+    margin-bottom: 20px;
+}
+
+#clown-name{
+    margin: 50px 0;
+}
+
+#cambia_immagine{
+    display: block;
 }

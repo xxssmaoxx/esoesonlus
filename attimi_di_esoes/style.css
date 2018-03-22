@@ -1,0 +1,30 @@
+.img{
+	padding: 2px;
+}
+
+.divisor{
+	cursor: pointer;
+}
+
+.inline{
+	margin-top: 2%;
+	width: 100%;
+	text-align: center;
+	display: inline-block;
+}
+
+.divisor{
+	margin-bottom: 3%;
+	text-align: center;
+}
+
+.line{
+	font-size: 2em;
+	color: #322529;
+	vertical-align: 15px;
+}
+
+.fa-chevron-down{
+	font-size: 2em;
+	vertical-align: -10px;
+}

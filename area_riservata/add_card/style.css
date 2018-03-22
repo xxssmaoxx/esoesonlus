@@ -2,7 +2,22 @@ a .nome{
 	color: #444;
 	font-size: 2em;
 }
+
 .add-card{
 	font-size: 7em;
 	color: #BBBBCA;
+}
+
+.descrizione{
+	margin-bottom: 3%;
+}
+
+#btn-hide{
+	width: 30px;
+	height: 30px;
+	font-size: 1.8rem;
+}
+
+.btn-success{
+	margin-right: 10%;
 }
