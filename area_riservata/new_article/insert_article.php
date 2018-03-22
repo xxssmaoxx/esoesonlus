@@ -1,13 +1,10 @@
 <?php 
-$host = "localhost";
-$user = "root";
-$pass = "";
-$data = "tesina";
+require $_SERVER["DOCUMENT_ROOT"] . "/esoes/utilities/connectDb.php";
 
 $tipo_articolo = ($_POST["tipo"] == '0')?'A':'P';
 
 
-$conn = new mysqli($host,$user,$pass,$data);
+$conn = connectDb();
 
 if($_FILES['load']['name']!= ""){
 	$onlytext = false;

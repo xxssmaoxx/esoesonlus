@@ -27,7 +27,7 @@
 				<h1 class=\"titolo bold\">$titolo</h1>
 				<span class=\"fa fa-angle-double-down show-text\" id=\"show-text\"></span>
 			</div>
-			<p class=\"testo\" id=\"testo-$i\">$testo</p>
+			<div class=\"testo\" id=\"testo-$i\">$testo</div>
 		</div>
 		<p class=\"divisor\"><span class=\"little-star\">&#9734;</span><span class=\"right-left\">&#9734;</span><span class=\"star\">&#9734;</span><span class=\"right-left\">&#9734;</span><span class=\"little-star\">&#9734;</span></p>";
 	}
