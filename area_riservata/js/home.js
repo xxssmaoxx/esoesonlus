@@ -1,6 +1,9 @@
 var changePwd = document.getElementById("change-pwd");
 var formPwd = document.getElementById("pwd");
-var realName = document.getElementById("real-name");
+var clownname = document.getElementById("clown-name");
+var changeMail = document.getElementById("change-mail");
+var mail = document.getElementById("mail");
+var cancelMail = document.getElementById("cancel-mail");
 var changeName = document.getElementById("submit-name");
 var frase = document.getElementById("frase");
 var changeFrase = document.getElementById("submit-frase");
@@ -10,12 +13,13 @@ var inputPwdNew = document.getElementById("new-pwd");
 var cancelName = document.getElementById("cancel-name");
 var cancelFrase = document.getElementById("cancel-frase");
 var subPwd = document.getElementById("submit-pwd");
-var image = document.getElementById("image");
-//array with values for establish what are the current active "forms" indexes : 0 name, 1 password, 2 sentence 
-var active = [0, 0, 0];
+var popup = $("#popup");
+//array with values for establish what are the current active "forms" indexes : 0 name, 1 password, 2 sentence, 3 mail
+var active = [0, 0, 0, 0];
 
 var oldName = "";
 var oldFrase = "";
+var oldMail = "";
 
 function toggleConEdit(elem) {
     if (elem.contentEditable == "true") {
@@ -52,12 +56,12 @@ changeName.onclick = function(e) {
     if (!active[0]) {
         active[0] = 1;
         toggle(cancelName);
-        toggleConEdit(realName);
+        toggleConEdit(clownname);
         changeValue(e.target, "Conferma");
-        oldName = realName.innerHTML;
+        oldName = clownname.innerHTML;
     } else {
-        if (realName.innerHTML != oldName) {
-            oldName = realName.innerHTML;
+        if (clownname.innerHTML != oldName) {
+            oldName = clownname.innerHTML;
             active[0] = 0;
             var req = new XMLHttpRequest();
             var data = new FormData();
@@ -70,7 +74,6 @@ changeName.onclick = function(e) {
                         cancelName.click();
                     } else {
                         alert("Errore durante il cambio del nome");
-                        alert(req.responseText);
                     }
                 }
             };
@@ -81,6 +84,41 @@ changeName.onclick = function(e) {
         }
     }
 }
+
+changeMail.onclick = function(e) {
+    if (!active[3]) {
+        active[3] = 1;
+        toggle(cancelMail);
+        toggleConEdit(mail);
+        changeValue(e.target, "Conferma");
+        oldMail = mail.innerHTML;
+    } else {
+        if(mail.innerHTML != oldMail){
+            oldMail = mail.innerHTML;
+            active[3] = 0;
+            var req = new XMLHttpRequest();
+            var data = new FormData();
+            req.open("POST", "./change.php");
+            req.onreadystatechange = function() {
+                //4 is a constant , there are 4 status in a XMLHttpRequest object, 4 means DONE 
+                if (req.readyState == 4 && req.status == 200) {
+                    if (req.responseText == "0") {
+                        alert("E-mail cambiata correttamente");            
+                        cancelMail.click();
+                    } else {
+                        console.log(req.responseText);
+                        alert("Errore durante il cambio della E-mail");
+                    }
+                }
+            };
+            data.append("mail", oldMail);
+            req.send(data);
+        } else {
+            alert("Per modificare devi inserire una E-mail diversa!");
+        }
+    }
+
+};
 
 changeFrase.onclick = function(e) {
     if (!active[2]) {
@@ -118,11 +156,19 @@ changeFrase.onclick = function(e) {
 };
 
 cancelName.onclick = function(e) {
-    toggleConEdit(realName);
+    toggleConEdit(clownname);
     changeValue(changeName, "Cambia nome");
     toggle(e.target);
-    realName.innerHTML = oldName;
+    clownname.innerHTML = oldName;
     active[0] = 0;
+}
+
+cancelMail.onclick = function(e) {
+    toggleConEdit(mail);
+    changeValue(changeMail, "Cambia nome");
+    toggle(e.target);
+    mail.innerHTML = oldMail;
+    active[3] = 0;
 }
 
 cancelFrase.onclick = function(e) {
@@ -155,11 +201,7 @@ subPwd.onclick = function(){
 }
 
 
-
-document.getElementById("change-image").onclick = function(){
-    image.click();
-}
-
+/*
 document.getElementById("image").onchange = function(){ 
      var file = image.files[0];
         console.log(file);
@@ -183,3 +225,12 @@ document.getElementById("image").onchange = function(){
         }
         
     }
+*/
+
+$("#cambia_immagine").on("click", function(){
+    popup.show();
+});
+
+$("#btn-hide").on("click", function(){
+    popup.hide();
+});

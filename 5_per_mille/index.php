@@ -4,7 +4,7 @@
 		<meta charset="utf-8">
 		<?php include "../utilities/imports.html" ?>
 		<link href='./style.css' rel='stylesheet' />
-		<title>ESO ES Onlus | Sostienici</title>
+		<title>ESO ES Onlus | 5 per mille</title>
 	</head>
 	<body>
 		<?php include "../utilities/menu.php"; ?>

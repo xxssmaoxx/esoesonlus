@@ -3,8 +3,8 @@
 	<head>
 		<meta charset="utf-8">
 		<title>ESO ES Onlus | Eventi</title>
-        <?php include "../utilities/imports.html"; ?>
-		<?php require "../utilities/importsCalendar.html"; ?>
+        <?php include $_SERVER["DOCUMENT_ROOT"] . "/esoes/utilities/imports.html"; ?>
+		<?php require $_SERVER["DOCUMENT_ROOT"] . "/esoes/utilities/importsCalendar.html"; ?>
 		<?php
 		require "../utilities/connectDb.php";
 		$conn = connectDb();
@@ -15,7 +15,6 @@
 					$('#calendario').fullCalendar({
 						locale: 'it',
 						themeSystem: 'jquery-ui',
-						themeName: 'cupertino',
 						header: {
 							left: 'prev',
 							center: 'title',
@@ -23,7 +22,7 @@
 						},
 						events: [";
 
-		$stmt = $conn->prepare("SELECT descrizione, luogo, giorno, ora_inizio FROM eventi
+		$stmt = $conn->prepare("SELECT descrizione, luogo, data, ora_inizio FROM eventi
 								WHERE tipo = 'S'");
 		$res = $stmt->execute();
 		$res = $stmt->get_result()->fetch_all();
@@ -50,6 +49,7 @@
 				margin: 0 auto;
 			}
 		</style>
+		<link rel="stylesheet" type="text/css" href="https://code.jquery.com/ui/1.12.1/themes/ui-lightness/jquery-ui.css">
 	</head>
 	<body>
 		<?php include "../utilities/menu.php"; ?>

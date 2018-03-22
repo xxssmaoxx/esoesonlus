@@ -17,7 +17,7 @@
 	$stmt = $conn->prepare("INSERT INTO utenti (user, pwd, permessi) VALUES(?, ?, ?)");
 
 	if($stmt){
-		$stmt->bind_param("sss", $user, $password_hash, $permessi);
+		$stmt->bind_param("ssss", $user, $password_hash, $permessi);
 	}else{
 		echo $conn->error;
 	}
@@ -27,10 +27,10 @@
 	}
 
 
-	$stmt = $conn->prepare("INSERT INTO clown (user, nome_clown) VALUES(?, ?)");
+	$stmt = $conn->prepare("INSERT INTO clown (user, nome_clown, mail) VALUES(?, ?, ?)");
 
 	if($stmt){
-		$stmt->bind_param("ss", $user, $clownName);
+		$stmt->bind_param("sss", $user, $clownName, $email);
 	}else{
 		echo $conn->error;
 	}	
@@ -40,7 +40,7 @@
 	}
 
 /*
-	$body = "Messaggio da EsoEs Onlus.\n Ciao " . $clownName . "\nIl tuo user è: " . $user . "\nLa tua password è: " . $password;
+	$body = "Messaggio da EsoEs Onlus.\n Ciao " . $clownName . "\nIl tuo user " . $user . " è stato eliminato dal sito www.esoesonlus.org";
 
 	if (mail($email, "Messaggio dal sito", $body)){
 		echo 0;

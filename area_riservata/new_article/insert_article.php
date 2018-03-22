@@ -4,15 +4,19 @@ $user = "root";
 $pass = "";
 $data = "tesina";
 
+$tipo_articolo = ($_POST["tipo"] == '0')?'A':'P';
+
+
 $conn = new mysqli($host,$user,$pass,$data);
+
 if($_FILES['load']['name']!= ""){
 	$onlytext = false;
 	$img_name = "/esoes/uploads/" . basename($_FILES['load']['name']);
 	$dest_url = $_SERVER["DOCUMENT_ROOT"] .  $img_name;
-	$query_img = "INSERT INTO immagini VALUES (NULL,?, 'A')";
+	$query_img = "INSERT INTO immagini VALUES (NULL,?, ?)";
 	
 	if($stmt = $conn->prepare($query_img)){
-	$stmt->bind_param('s', $img_name);	
+	$stmt->bind_param('ss', $img_name, $tipo_articolo);	
 	if(!$stmt->execute()) exit("Errore durante l'esecuzione della query : " . $stmt->error);
 	}else{
 		echo $conn->error;
@@ -26,34 +30,41 @@ if($_FILES['load']['name']!= ""){
 
 if(mysqli_connect_errno()){ echo "Errore : " . mysqli_connect_error(); exit(); }
 	else{
-	if($_POST["tipo"] == "0"){
-	$query = "INSERT INTO articoli 
-				VALUES (NULL, ?,?,
-				(SELECT MAX(id) FROM immagini))";
-
-	$stmt->bind_param('ss',$titolo,$testo); 
-	
-	}
-	else{
-		str_replace("\"", "\\\"", $testo);
-		$content= "<!DOCTYPE html><html><head><meta charset=\"utf-8\"><?php include \"../utilities/imports.html\" ?><link href='./style.css' rel='stylesheet' /><title>ESO ES Onlus | Archivio progetti</title></head><body><?php include \"../utilities/menu.php\"; ?><div class=\"container\">$testo</div><?php include \"../utilities/footer.html\"; ?></body></html>";
 		
-		echo $content;
-		$query = "INSERT INTO pagine (titolo, id_img) VALUES (?, (SELECT MAX(id) FROM immagini))";
-		$stmt = $conn->prepare($query);	
-		$stmt->bind_param('s', $titolo);
-		$url = $_SERVER["DOCUMENT_ROOT"] . "/esoes/" . $titolo;	
-		if(!is_dir($url)){
-			mkdir($url);
-			$fp = fopen($url . "/index.php", "w");
-			fwrite($fp, $content);
-			fclose($fp);
+		$query = "INSERT INTO pagine (titolo, id_img, tipo) VALUES (?, (SELECT MAX(id) FROM immagini), ?)";
+			$stmt = $conn->prepare($query);	
+			$stmt->bind_param('ss', $titolo, $tipo_articolo);
+			$stmt->execute();
+			
+			
+		if($tipo_articolo == "P"){
+			str_replace("\"", "\\\"", $testo);
+			$content= "<!DOCTYPE html><html><head><meta charset=\"utf-8\"><?php include \"../utilities/imports.html\" ?><link href='./style.css' rel='stylesheet' /><title>ESO ES Onlus | Archivio progetti</title></head><body><?php include \"../utilities/menu.php\"; ?><div class=\"container\">$testo</div><?php include \"../utilities/footer.html\"; ?></body></html>";
+			
+			$url = $_SERVER["DOCUMENT_ROOT"] . "/esoes/" . $titolo;	
+			if(!is_dir($url)){
+				mkdir($url);
+				$fp = fopen($url . "/index.php", "w");
+				fwrite($fp, $content);
+				fclose($fp);
+			}else{
+				echo "Errore: esiste già una pagina con lo stesso nome!";
+			}
 		}else{
-			echo "Errore: esiste già una pagina con lo stesso nome!";
-		}
-	}		
+				
+			$query = "INSERT INTO articoli 
+						VALUES ( (SELECT MAX(id) FROM pagine), ? )";
+			
+			
+			$stmt = $conn->prepare($query);
+			echo $conn->error;
+			var_dump($stmt);
+			$stmt->bind_param('s',$testo); 
+			$stmt->execute();
+			}
+			
+	}
 	
-	if(!$stmt->execute())	exit("Errore durante l'esecuzione della query : " . $stmt->error);
 
 	echo "<h1>Articolo inserito correttamente</h1><br>";
 
@@ -66,7 +77,7 @@ if(mysqli_connect_errno()){ echo "Errore : " . mysqli_connect_error(); exit(); }
 		else 
 			echo "Qualcosa è andato storto durante il caricamento dell'immagine<br>";
 	}
-}
+
 
 ?>
 

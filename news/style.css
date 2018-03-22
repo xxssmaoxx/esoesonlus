@@ -1,9 +1,15 @@
 .articolo{
 	margin-bottom: 10%;
+	padding: 5%;
+	border-radius: 12px;
+	box-shadow: 3px 6px 10px #AAAAAA;
+	text-align:center;
 }
 
 .img-articolo{
-	width: 100%;
+	width: 	80%;
+	margin: auto;
+	border-radius: 12px;
 }
 
 .inline{
@@ -13,30 +19,49 @@
 	display: inline-block;
 }
 
+.titolo{
+	color: #666;
+	font-family: georgia;
+}
+
 .show-text{
 	width: 50px;
 	height: 50px;
 	float: right;
 	text-align: center;
-	opacity: 0.5;
 	border-radius: 10px;
-	background-color: black;
-	font-size: 3rem;
+	font-size: 1.5rem;
 	cursor: pointer;
-}
-
-.hide-text{
-	width: 50px;
-	height: 50px;
-	float: right;
-	text-align: center;
-	border-radius: 10px;
-	background-color: black;
-	font-size: 3rem;
-	cursor: pointer;
-	opacity: 0.5;
+	color: red;
 }
 
 .testo{
 	display: none;
+}
+
+#header{
+	background-image: url("/esoes/img/others/news.jpg");
+}
+
+.divisor{
+	margin-bottom: 3%;
+	text-align: center;
+}
+
+.star{
+	font-size: 70px;
+	color: white;
+	text-shadow: 2px 2px 4px blue;
+}
+.little-star{
+	font-size: 30px;
+	color: white;
+	text-shadow: 1px 1px 2px blue;
+	vertical-align: 13px;
+}
+.right-left{
+    font-size: 50px;
+	color: white;
+	text-shadow: 1px 1px 2px blue;
+	vertical-align: 7px;
 }

@@ -13,19 +13,19 @@
 	<body>
 		<?php include "./utilities/menu.php"; ?>
 		<div class="container">
-        	<div class="jumbotron">
+        	<div class="jumbotron animated zoomIn">
 			<br>
 			<br>
 			<h5 class="bold text_center">ESO ES ONLUS</h5>
 			<p>&nbsp;</p>
 			<p class="text_center">clownterapia, animazione socio-teatrale&nbsp;in contesti di disagio&nbsp;e performance artistiche a sostegno&nbsp;di&nbsp;cause sociali e progetti di solidarietà internazionale!</p>
             <p>&nbsp;</p>
-			<p class="text_center"><a href="chiSiamo.php"><button class="button pointer">APPROFONDISCI!</button></a></p>
+			<p class="text_center"><a href="/esoes/chi_siamo"><button class="button pointer animated bounceHover">APPROFONDISCI!</button></a></p>
             </div>
 		</div>
 		<div id="container">
-        	<a href="opeguateLibro2016.php">
-				<div class="sezione pointer">
+        	<a href="/esoes/opeguate_libro_2016">
+				<div class="sezione pointer animated pulseHover">
 					<img class="img-responsive" src="img/home/libro.jpg">
                     <p>&nbsp;</p>
 					<h4 class="bold">#OPEGUATE2016 – Il libro</h4>
@@ -34,8 +34,8 @@
 					</p>
 				</div>
             </a>
-			<a href="borseStudio.php">
-				<div class="sezione pointer">
+			<a href="/esoes/borse_studio">
+				<div class="sezione pointer animated pulseHover">
 					<img class="img-responsive" src="img/home/borsedistudio.jpg">
                     <p>&nbsp;</p>
 					<h4 class="bold">Programma Borse di Studio</h4>
@@ -45,8 +45,8 @@
 					</p>
 				</div>
 			</a>
-			<a href="5xmille.php">
-				<div class="sezione pointer">
+			<a href="/esoes/5_per_mille">
+				<div class="sezione pointer animated pulseHover">
 					<img class="img-responsive" src="img/home/5x1000.jpg">
                     <p>&nbsp;</p>
 					<h4 class="bold">5 per Mille a Eso Es!</h4>
