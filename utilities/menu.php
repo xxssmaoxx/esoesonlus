@@ -4,8 +4,8 @@ include $_SERVER["DOCUMENT_ROOT"]."/esoes/utilities/divAccedi.html"; ?>
 
 
 <div id="header">
-  <a href="/esoes/index.php"><img src="/esoes/img/home/esoes_logo_completo_light1.jpg" class="logo"></a>
-  <a id="btn-accedi" class="desktop btn btn-primary navbar-btn pointer"><i class="far fa-user">&nbsp;</i> Accedi</a>
+  <a href="/esoes/index.php"><img src="/esoes/img/home/esoes_logo_completo_light1.jpg" class="logo animated bounceInDown"></a>
+  <a id="btn-accedi" class="desktop btn btn-primary navbar-btn pointer animated bounceInDown"><i class="far fa-user">&nbsp;</i> Accedi</a>
 </div>
 
 
@@ -29,7 +29,7 @@ include $_SERVER["DOCUMENT_ROOT"]."/esoes/utilities/divAccedi.html"; ?>
           <li><a class="dropdown-item" href="/esoes/manifesto">Manifesto</a></li>
           <li><a class="dropdown-item" href="/esoes/governance">Governance</a></li>
           <li><a class="dropdown-item" href="/esoes/policies">Policies</a></li>
-          <li><a class="dropdown-item" href="#">Attimi di Eso Es</a></li>
+          <li><a class="dropdown-item" href="/esoes/attimi_di_esoes">Attimi di Eso Es</a></li>
         </ul>
       </li>
       <li class="nav-item dropdown">
@@ -37,7 +37,7 @@ include $_SERVER["DOCUMENT_ROOT"]."/esoes/utilities/divAccedi.html"; ?>
           EVENTI
         </a>  
         <ul class="dropdown-menu">
-          <li><a class="dropdown-item" href="#">News</a></li>
+          <li><a class="dropdown-item" href="/esoes/news">News</a></li>
           <li><a class="dropdown-item" href="/esoes/eventi">Eventi</a></li>
         </ul>
       </li>
@@ -93,11 +93,6 @@ include $_SERVER["DOCUMENT_ROOT"]."/esoes/utilities/divAccedi.html"; ?>
 
 <script>
 
-var menuBtnShow = document.getElementById("menu-btn-accedi");
-var show = document.getElementById("btn-accedi");
-var popup = document.getElementById("accedi");
-var hide = document.getElementById("btn-hide");
-
 $('.dropdown-menu a.dropdown-toggle').on('click', function(e) {
   if (!$(this).next().hasClass('show')) {
     $(this).parents('.dropdown-menu').first().find('.show').removeClass("show");
@@ -114,6 +109,10 @@ $('.dropdown-menu a.dropdown-toggle').on('click', function(e) {
 });
   
 
+var menuBtnShow = document.getElementById("menu-btn-accedi");
+var show = document.getElementById("btn-accedi");
+var popup = document.getElementById("popup");
+var hide = document.getElementById("btn-hide");
 
 
 <?php 
