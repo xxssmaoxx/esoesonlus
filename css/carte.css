@@ -1,19 +1,18 @@
-.contenitore{
-	margin: 20px 0px;
-	padding:3%;
-	text-align: center;
-}
 .carte{
+	position: relative;
 	border-radius: 12px;
 	margin: 10px;
-	width: 220px;
 	background-color: white;
-	padding: 20px;
 	box-shadow: 3px 6px 10px #AAAAAA;
 	display: inline-block;
 	text-align: center;
 	overflow-wrap: break-word;
 	overflow: hidden;
+	vertical-align: top;
+}
+
+.contenitore{
+	text-align: center;
 }
 
 .carte:hover{
@@ -27,6 +26,14 @@
 }
 
 .img-clown{
-	width: 180px;
-	height: 160px;
+	margin-top: 20px;
+}
+
+.delete-user{
+	position: absolute;
+	right: 0px;
+	top: 0px;
+	font-size: 1.7rem;
+	color: #666;
+	cursor: pointer;
 }

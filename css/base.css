@@ -1,3 +1,10 @@
+@font-face {
+  font-family: 'Open Sans';
+  font-style: normal;
+  font-weight: 400;
+  src: local('Open Sans Regular'), local('OpenSans-Regular'), url(../webfonts/opensans.ttf) format('truetype');
+}
+
 /**
 prova multilevel menu
 */
@@ -147,12 +154,12 @@ body{
 
 /*FOOTER*/
 footer{
-	margin: 0;
-	padding: 2% 5%;
-    font-size: 13px;
-	color: white;
-    display: flex;
-    display: -webkit-flex;
+  margin: 0;
+  padding: 2% 5%;
+  font-size: 13px;
+  color: white;
+  display: flex;
+  display: -webkit-flex;
 }
 
 footer .info{
@@ -168,17 +175,11 @@ a{
 	outline: none;
 }
 
-.yellow{
-	color: yellow;
-}
-.yellow:hover{
-	color:yellow;
-}
-.facebook{
+.social{
 	font-size: 30px;
 	color:#FFFFFF;
 }
-.facebook:hover{
+.social:hover{
 	text-decoration: none;
 	color:white;
 }
@@ -186,6 +187,10 @@ a{
 /*CONTENUTI RIPETITIVI*/
 .container{
     padding:5%;
+}
+
+.contenitore{
+  margin: 5%;
 }
 
 .bold{
@@ -240,19 +245,38 @@ a{
     border-radius: 4px;
     box-sizing: border-box;
 }
-#accedi{
+
+#popup{
   background-color: #CCC;
   border-radius: 15px;
+  border: 1.5px solid black;
   text-align: center;
-  margin: 5% 15%;
+  margin: 5% 30%;
   display: none;
-  position:fixed;
+  position: fixed;
   top:0;
   left:0;
-  width: 70%;
-  z-index: 1;
+  width: 40%;
+  z-index: 10;
   padding: 2%;
 }
+
+@media screen and (max-width: 665px){
+	#popup{
+		background-color: #CCC;
+		border-radius: 15px;
+		text-align: center;
+		margin: 5% 5%;
+		display: none;
+		position: fixed;
+		top:0;
+		left:0;
+		width: 90%;
+		z-index: 10;
+		padding: 2%;
+	}
+}
+
 .small_text{
   padding: 10px;
   width: auto;
@@ -274,10 +298,14 @@ a{
   font-size: 3rem;
   cursor: pointer;
 }
+
+.active{
+	z-index: inherit !important;
+}
 .load-image{
   height: 170px;
-  line-height: 170px; !important
-  padding:0; !important
+  line-height: 170px;
+  padding:0;
   border: 2px solid #CCCCCC;
 }
 .load-image:hover{
