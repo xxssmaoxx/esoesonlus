@@ -58,7 +58,6 @@ if(mysqli_connect_errno()){ echo "Errore : " . mysqli_connect_error(); exit(); }
 			
 			$stmt = $conn->prepare($query);
 			echo $conn->error;
-			var_dump($stmt);
 			$stmt->bind_param('s',$testo); 
 			$stmt->execute();
 			}
