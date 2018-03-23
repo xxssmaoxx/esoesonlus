@@ -175,6 +175,11 @@ a{
 	outline: none;
 }
 
+.link:hover{
+  text-decoration: none;
+  color: orange;
+}
+
 .social{
 	font-size: 30px;
 	color:#FFFFFF;
@@ -196,13 +201,10 @@ a{
 .bold{
 	font-weight: bold;
 }
+
 .center{
     display:block;
     margin:auto;
-}
-
-.text_center{
-	text-align:center;
 }
 
 .cit{
@@ -211,6 +213,7 @@ a{
     font-size: 15pt;
     color: #51647A;
 }
+
 .button{
     background-color: white; 
     color: black; 
@@ -224,10 +227,7 @@ a{
     -webkit-transition-duration: 0.4s; 
     transition-duration: 0.4s;    
 }
-.mini_button{
-	width: 80px;
-    min-width: 0px;
-}
+
 .button:hover {
     background-color: #0074D9;
     color: white;
@@ -235,15 +235,6 @@ a{
 
 .pointer{
 	cursor: pointer;
-}
-
-.text_input{
-	width: 100%;
-    padding: 1.5%;
-    display: inline-block;
-    border: 2px solid #ccc;
-    border-radius: 4px;
-    box-sizing: border-box;
 }
 
 #popup{
@@ -302,22 +293,11 @@ a{
 .active{
 	z-index: inherit !important;
 }
-.load-image{
-  height: 170px;
-  line-height: 170px;
-  padding:0;
-  border: 2px solid #CCCCCC;
-}
-.load-image:hover{
-  background-color: #FFFFFF;
-  color: #000;
-}
+
 #testo *{
   display: inline-block;
 }
-#load{
-  display:none;
-}
+
 /*ELENCHI NON ORDINATI*/
 .list{
 	list-style-type: none;

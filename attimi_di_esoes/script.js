@@ -17,3 +17,11 @@ $(document).ready(function(){
 win.on("resize", function(){
 	resize();
 });
+
+var block = $(".block-img");
+block.hide();
+$(block[0]).show();
+$(".divisor").on("click", function(e){ 
+	var temp = $(e.target);
+	temp.parent().next(".block-img").slideToggle();
+});

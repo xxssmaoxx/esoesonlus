@@ -1,38 +1,23 @@
 <?php 
 	require $_SERVER["DOCUMENT_ROOT"] . "/esoes/utilities/connectDb.php";
 	$conn = connectDb();
-	
-	if(isset( $_POST["tipo"])){
-		$tipo = $_POST["tipo"];
-	echo $tipo;
-		switch($tipo){
-			case 0:
-			if(!$stmt = $conn->prepare("SELECT id, titolo FROM pagine WHERE tipo = 'A'")) echo $conn->error;			
-			break;
-			case 1:
-			if(!$stmt = $conn->prepare("SELECT id, titolo FROM pagine WHERE tipo = 'P'")) echo $conn->error;			
-			break;
-		}
-		
-		$stmt->execute();
+	if(isset($_POST['tipo'])){
+		if(!$stmt = $conn->prepare("SELECT id, titolo FROM pagine")) echo $conn->error;
+		$res = $stmt->execute();
 
-		$stmt->bind_result($id, $titolo);
+		$res = $stmt->get_result()->fetch_all();
 		
-		
-		while(($stmt->fetch()) != NULL){
+		for($i=0; $i<count($res); $i++){
+
+			$titolo = $res[$i][1];
+			$id = $res[$i][0];
+
 			echo "<option value=\"$id\">$titolo</option>";
 		
 		}
 	}
-	
+
 	if(isset($_POST['titolo'])){
-		$id = $_POST['titolo'];
-		$stmt = $conn->prepare("SELECT testo FROM articoli WHERE id_pagine = ?");
-		echo $conn->error;
-		$stmt->bind_param("s", $id);
-		$stmt->execute();
-		$stmt->bind_result($testo);
-		$stmt->fetch();
-		echo $testo;
+		$conn->prepare("SELECT testo FROM ")
 	}
 ?>

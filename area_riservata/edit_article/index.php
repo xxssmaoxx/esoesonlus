@@ -29,20 +29,6 @@
 					<select id="titolo" class="col-sm-10 form-control">
 						
 					</select>
-				</div>
-				<div class="row form-group">
-					<label class="col-sm-2">Nuovo titolo</label>
-					<input type="text" id="txt-titolo" class="form-control col-sm-10">
-				</div>
-				<br>
-				<label>Testo</label>
-				<textarea id="testo" class="form-control" name = "testo" rows="15" contenteditable="true"></textarea>
-				<br>
-				<br>
-				<input id ="invia" class="btn btn-primary center" type="submit" value="Inserisci articolo">
-			</form>
-			
-			
 					<script type="text/javascript">
 
 						function cambiato(){
@@ -53,8 +39,6 @@
 								req.onreadystatechange = function(){
 									if(req.readyState == 4 && req.status == 200){
 										document.getElementById("titolo").innerHTML = req.responseText;	
-									}else{
-										console.log(req.responseText);
 									}
 								};
 							req.send("tipo=" + tipo.value);
@@ -62,26 +46,23 @@
 
 						cambiato();
 						var tipo = document.getElementById("tipo");
-						tipo.onchange = cambiato;						
+						tipo.onchange = cambiato;
+
 						
-						var titolo = document.getElementById("titolo");
-						titolo.onchange = function(){
-							document.getElementById("nuovo-titolo").innerHTML = titolo.item(titolo.selectedIndex).innerHTML;
-							var req = new XMLHttpRequest();
-							req.open("POST", "edit_article.php");	
-							req.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-								req.onreadystatechange = function(){
-									if(req.readyState == 4 && req.status == 200){
-										document.getElementById("testo").innerHTML = req.responseText;
-										tinyMCE.activeEditor.setContent(req.responseText);
-									}else{
-										console.log(req.responseText);
-									}
-								};
-							req.send("titolo=" + titolo.value);
-						}
 						
 					</script>
+				</div>
+				<div class="row form-group">
+					<label class="col-sm-2">Titolo</label>
+					<input type="text" id="txt-titolo" class="form-control col-sm-10" required>
+				</div>
+				<br>
+				<label>Testo</label>
+				<textarea id="testo" class="form-control" name = "testo" rows="15" contenteditable="true"></textarea>
+				<br>
+				<br>
+				<input id ="invia" class="btn btn-primary center" type="submit" value="Inserisci articolo">
+			</form>
 	    </div>
 	</div>
 	<script src='../js/editor.js'></script>
