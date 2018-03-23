@@ -61,6 +61,7 @@
 						alert("ok");
 					}else{
 						alert("non ok");
+						console.log(req.responseText);
 					}
 				}
 			};

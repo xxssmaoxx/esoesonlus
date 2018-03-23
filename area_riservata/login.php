@@ -5,13 +5,14 @@
 	$pwd = sha1($_POST["pwd"]);
 
 	$conn = connectDb();
-	$stmt = $conn->prepare("SELECT * FROM utenti WHERE user = ? AND pwd = ?");
+	$stmt = $conn->prepare("SELECT permessi FROM utenti WHERE user = ? AND pwd = ?");
 	$stmt->bind_param("ss", $user, $pwd);
 	$stmt->execute();
-	$res = $stmt->get_result()->fetch_assoc();
+	$stmt->bind_result($permessi);
+	$stmt->fetch();
 
-	if($res != NULL){
-		$_SESSION["permission"] = $res["permessi"];
+	if($permessi != NULL){
+		$_SESSION["permission"] = $permessi;
 		$_SESSION["user"] = $user;
 		$_SESSION["pwd"] = $pwd;
 		echo "OK";

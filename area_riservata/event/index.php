@@ -12,7 +12,8 @@
 		$conn = connectDb();
 		$stmt = $conn->prepare("SELECT descrizione, luogo, data, ora_inizio FROM eventi");
 		$res = $stmt->execute();
-		$res = $stmt->get_result()->fetch_all();
+		$stmt->bind_result($descrizione, $luogo, $data, $ora_inizio);
+
 
 		echo "<script type=\"text/javascript\">
 				$(document).ready(function(){
@@ -30,14 +31,9 @@
 		
 		
 		
-		for($i=0; $i<count($res); $i++){
-
-			$desc = $res[$i][0];
-			$luogo = $res[$i][1];
-			$data = $res[$i][2];
-			$ora_inizio = $res[$i][3];
+		while(!is_null($stmt->fetch())){
 			echo "	{
-						title: '$desc',
+						title: '$descrizione',
 						start: '$data',
 					},";
 		}

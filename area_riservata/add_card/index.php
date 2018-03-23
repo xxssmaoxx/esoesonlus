@@ -4,8 +4,7 @@
 <html>
 <head>
 	<title>EsoEs Onlus | Aggiungi Clown</title>
-	<meta charset="utf-8">
-	<link rel="stylesheet" href="/esoes/css/carte.css">	
+	<meta charset="utf-8">	
 	<?php include $_SERVER["DOCUMENT_ROOT"] . "/esoes/utilities/imports.html" ?>
 
 	<?php include $_SERVER["DOCUMENT_ROOT"] . "/esoes/area_riservata/imports_riservata.html" ?>
@@ -43,7 +42,7 @@
 		show.on("click", function(e){
 			popup.toggle();
 			//recupero il nome del clown per metterlo nel popup
-			var name = $(e.target).next().next().html();
+			var name = $(e.target).next().children().next().html();
 			$(".descrizione").html("Sei sicuro di voler eliminare l'utente di " + name + " ?");
 			//recupero l'id del bottone cliccato
 			confirm.data("name", $(e.target).attr("id"));
@@ -65,6 +64,8 @@
 				if(req.readyState == 4){
 					console.log(req.responseText);
 					location.href = ".";
+				}else{
+					console.log(req.responseText);
 				}
 			};
 			data.append("user", confirm.data("name"));

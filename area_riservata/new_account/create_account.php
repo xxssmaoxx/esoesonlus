@@ -17,7 +17,7 @@
 	$stmt = $conn->prepare("INSERT INTO utenti (user, pwd, permessi) VALUES(?, ?, ?)");
 
 	if($stmt){
-		$stmt->bind_param("ssss", $user, $password_hash, $permessi);
+		$stmt->bind_param("sss", $user, $password_hash, $permessi);
 	}else{
 		echo $conn->error;
 	}
