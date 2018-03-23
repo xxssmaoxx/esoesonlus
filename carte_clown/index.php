@@ -9,7 +9,7 @@
 	<title>EsoEs Onlus | I clown</title>
 </head>
 <body>
-	<?php include "../utilities/menu.php" ?>
+	<?php include "../utilities/menu.php" ?>	
 	<div class="contenitore">
 		<h3 class="title">Ecco a voi tutti i nostri <b class="red">clown</b> che con <b class="blue">entusiamo</b> e <b class="blue">passione</b> si dedicano al volontariato:</h3>
 		<?php
@@ -22,6 +22,11 @@
 		var width;
 		var width_img;
 		var height_img;
+		var max_height;
+		var info_max = 0;
+		var margin_top;
+		//imposto l'altezza dei margini interni alla carta
+		var margin = 10;
 		/*
 		*La funzione resize() setta la larghezza e l'altezza delle immagini di profilo dei clown (altezza = larghezza), e poi setta la larghezza della carta stessa in modo che ce ne siano al massimo quattro affiancate e l'altezza in base all'altezza massima che assume il paragrafo che contiene la frase del clown, tenendo conto anche dell'altezza dell'immagine e di tutti i margini tra un elemento e l'altro.
 		*/
@@ -35,22 +40,29 @@
 			*l'immagine è 30 px più stretta della carta a causa dei margini. Setto larghezza e altezza dell'immagine uguali (l'immagine apparirà quadrata), ma salvo comunque l'altezza in un altra variabile di modo che sia più semplice un eventuale futura modifica.
 			*/
 			width_img = width - 30;
-			height_img = width_img;
+			height_img = (width_img*3)/4;
 
 			img.attr("width",width_img);
 			img.attr("height",height_img);
 			//setto la larghezza dell'immagine
 			carte.width(width);
-			//cerco la height massima del paragrafo della frase per settare a tutte le carte la stessa altezza
-			$(".frase").each(function() {
-				var h = $(this).height(); 
-				max = h > max ? h : max;
+			//cerco la height massima del div .info che contiene l'immagine, il nome e la frase del clown
+			$(".info").each(function() {
+				var height = $(this).height();
+				info_max = height > info_max ? height : info_max;
 			});
 			/*
-			*una volta salvata l'altezza massima del paragrafo .frase setto l'altezza della carta all'altezza massima di .frase aumentata dell'altezza dell'immagine e dei vari margini(100px)
+			*una volta salvata l'altezza massima del paragrafo .frase setto l'altezza della carta all'altezza massima al div .info (contiene immagine, nome e frase del clown) maggiorata dei margini
 			*/
-			carte.height(max + width_img + 100);
-			}
+			max_height = info_max + margin;
+			carte.height(max_height);
+
+			$(".info").each(function() {
+				var height = $(this).height();
+				margin_top = (max_height - height)/2;
+				$(this).attr("style","margin-top: " + margin_top + "px");
+			});
+		}
 
 		var cont = $(".contenitore");
 		var carte = $(".carte");

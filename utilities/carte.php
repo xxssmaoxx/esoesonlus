@@ -15,9 +15,11 @@
 		echo "
 		<div class=\"carte animated pulseHover\">
 			<span class=\"fa fa-times-circle delete-user\" id=\"$user\"></span>
-			<img class=\"img-clown\" src=\"$img\">
-			<p class=\"name\">$name</p>
-			<p class=\"frase\">$frase</p>
+			<div class=\"info\">
+				<img class=\"img-clown\" src=\"$img\">
+				<p class=\"name\">$name</p>
+				<p class=\"frase\">$frase</p>
+			</div>
 		</div>";	
 	}
 ?>

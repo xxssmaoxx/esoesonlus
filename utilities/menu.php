@@ -126,15 +126,15 @@ var hide = document.getElementById("btn-hide");
           show.href = '/esoes/area_riservata/';";
   }else{
     echo "show.onclick = function(){
-            popup.style.display = \"block\";
+            $(popup).fadeToggle();
           }
 
           menuBtnShow.onclick = function(){
-            popup.style.display = \"block\";
+            $(popup).fadeToggle();
           } 
 
           hide.onclick = function(){
-            popup.style.display = \"none\";
+            $(popup).fadeToggle() ;
           }";
   }
 
