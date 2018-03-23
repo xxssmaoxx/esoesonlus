@@ -33,7 +33,8 @@
                 $stmt->bind_param("s", $_SESSION['user']);
                 echo $stmt->error;
                 $stmt->execute();
-                $img = $stmt->get_result()->fetch_assoc()['src'];
+                $stmt->bind_result($img);
+                $stmt->fetch();
                 echo  "\"/esoes/uploads/$img\"";
             ?>
             class="img-profilo center">
@@ -45,7 +46,9 @@
                 $stmt = $conn->prepare("SELECT nome_clown FROM clown WHERE user=?");
                 $stmt->bind_param("s", $_SESSION['user']);
                 $stmt->execute();
-                echo $stmt->get_result()->fetch_assoc()['nome_clown'];
+                $stmt->bind_result($nome);
+                $stmt->fetch();
+                echo $nome;
             ?>
             </h1>
             <div class="text-right">
@@ -59,7 +62,9 @@
                 $stmt = $conn->prepare("SELECT mail FROM clown WHERE user=?");
                 $stmt->bind_param("s", $_SESSION['user']);
                 $stmt->execute();
-                echo $stmt->get_result()->fetch_assoc()['mail'];
+                $stmt->bind_result($mail);
+                $stmt->fetch();
+                echo $mail;
             ?>
             </p>
             <div class="text-right">
@@ -82,7 +87,9 @@
                         $stmt = $conn->prepare("SELECT frase FROM clown WHERE user=?");
                         $stmt->bind_param("s", $_SESSION['user']);
                         $stmt->execute();
-                        echo $stmt->get_result()->fetch_assoc()['frase'];
+                        $stmt->bind_result($frase);
+                        $stmt->fetch();
+                        echo $frase;
                 ?>
             </div>
             <div class="text-right">
