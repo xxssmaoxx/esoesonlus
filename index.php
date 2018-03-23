@@ -13,14 +13,14 @@
 	<body>
 		<?php include "./utilities/menu.php"; ?>
 		<div class="container">
-        	<div class="jumbotron animated zoomIn">
+        	<div class="jumbotron text-center animated zoomIn">
 			<br>
 			<br>
-			<h5 class="bold text_center">ESO ES ONLUS</h5>
+			<h5 class="bold">ESO ES ONLUS</h5>
 			<p>&nbsp;</p>
-			<p class="text_center">clownterapia, animazione socio-teatrale&nbsp;in contesti di disagio&nbsp;e performance artistiche a sostegno&nbsp;di&nbsp;cause sociali e progetti di solidarietà internazionale!</p>
+			<p class="">clownterapia, animazione socio-teatrale&nbsp;in contesti di disagio&nbsp;e performance artistiche a sostegno&nbsp;di&nbsp;cause sociali e progetti di solidarietà internazionale!</p>
             <p>&nbsp;</p>
-			<p class="text_center"><a href="/esoes/chi_siamo"><button class="button pointer animated bounceHover">APPROFONDISCI!</button></a></p>
+			<p><a href="/esoes/chi_siamo"><button class="button pointer animated bounceHover">APPROFONDISCI!</button></a></p>
             </div>
 		</div>
 		<div id="container">

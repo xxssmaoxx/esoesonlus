@@ -18,14 +18,14 @@
 
 			<p>Per portare la sua piccola quota di contributo nel sostegno di questo principi, l’associazione propone i seguenti <b>obiettivi</b> e i seguenti <b>progetti</b>:</p>
 			<ul class="list">
-			    <li><a href=borseStudio.php>il programma di borse di studio</a> volte a garantire a bambini meritevoli l’accesso all’istruzione primaria, nel Dipartimento di Chimaltenango</li>
+			    <li><a href=/esoes/borse_studio/>il programma di borse di studio</a> volte a garantire a bambini meritevoli l’accesso all’istruzione primaria, nel Dipartimento di Chimaltenango</li>
 			    <li>sostentamento e continuità del <b>Fondo Niños</b> (nato nel 2010 all’interno dell’associazione socio-assistenziale di clownterapia <a href="www.conivip.it">Cônivip Onlus</a>) per supportare economicamente i progetti già attivi in Guatemala.</li>
 			</ul>
 			<p>&nbsp;</p>
 
-			<p>Eso Es Onlus si pone, inoltre, l’obiettivo di realizzare <b>progettualità sociali di sostegno e solidarietà internazionale e iniziative a carattere umanitario</b>, dando prosieguo alla <a href="missione.php">"Missione Guate"</a> e formando i gruppi di volontari che parteciperanno alle prossime Missioni.</p>
+			<p>Eso Es Onlus si pone, inoltre, l’obiettivo di realizzare <b>progettualità sociali di sostegno e solidarietà internazionale e iniziative a carattere umanitario</b>, dando prosieguo alla <a href="/esoes/missione">"Missione Guate"</a> e formando i gruppi di volontari che parteciperanno alle prossime Missioni.</p>
 
-			<a href="sostienici.php">Sostieni i nostri progetti!</a>
+			<a href="/esoes/sostienici/">Sostieni i nostri progetti!</a>
 		</div>
 		<?php include "../utilities/footer.html"; ?>
 	</body>

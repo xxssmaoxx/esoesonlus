@@ -4,7 +4,7 @@ include $_SERVER["DOCUMENT_ROOT"]."/esoes/utilities/divAccedi.html"; ?>
 
 
 <div id="header">
-  <a href="/esoes/index.php"><img src="/esoes/img/home/esoes_logo_completo_light1.jpg" class="logo animated bounceInDown"></a>
+  <a href="/esoes/index.php"><img src="/esoes/img/home/esoes_logo.png" class="logo animated bounceInDown"></a>
   <a id="btn-accedi" class="desktop btn btn-primary navbar-btn pointer animated bounceInDown"><i class="far fa-user">&nbsp;</i> Accedi</a>
 </div>
 
