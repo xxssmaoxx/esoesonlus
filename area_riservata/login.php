@@ -1,10 +1,10 @@
 <?php
+	include $_SERVER["DOCUMENT_ROOT"]."/esoes/utilities/connectDb.php";
 	session_start();
 	$user = $_POST["user"];
 	$pwd = sha1($_POST["pwd"]);
 
-
-	$conn = new mysqli("localhost", "root", "", "tesina");
+	$conn = connectDb();
 	$stmt = $conn->prepare("SELECT * FROM utenti WHERE user = ? AND pwd = ?");
 	$stmt->bind_param("ss", $user, $pwd);
 	$stmt->execute();
@@ -16,6 +16,4 @@
 		$_SESSION["pwd"] = $pwd;
 		echo "OK";
 	}
-		
-
 ?>

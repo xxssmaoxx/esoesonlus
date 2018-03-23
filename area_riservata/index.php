@@ -76,7 +76,7 @@
             <br>
 
             <h2>La tua frase</h2>
-            <p id="frase" contenteditable="false">
+            <div id="frase" contenteditable="false">
                 <?php
                         $conn = connectDb();
                         $stmt = $conn->prepare("SELECT frase FROM clown WHERE user=?");
@@ -84,7 +84,7 @@
                         $stmt->execute();
                         echo $stmt->get_result()->fetch_assoc()['frase'];
                 ?>
-            </p>
+            </div>
             <div class="text-right">
                 <button id="submit-frase" class="btn btn-primary text-right">Cambia la tua frase</button><button id="cancel-frase" class="btn btn-danger" style="display:none;">Annulla</button>
             </div>
