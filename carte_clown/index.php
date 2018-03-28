@@ -27,13 +27,22 @@
 		var margin_top;
 		//imposto l'altezza dei margini interni alla carta
 		var margin = 10;
+		var n;
+		var cont_width;
 		/*
 		*La funzione resize() setta la larghezza e l'altezza delle immagini di profilo dei clown (altezza = larghezza), e poi setta la larghezza della carta stessa in modo che ce ne siano al massimo quattro affiancate e l'altezza in base all'altezza massima che assume il paragrafo che contiene la frase del clown, tenendo conto anche dell'altezza dell'immagine e di tutti i margini tra un elemento e l'altro.
 		*/
 		function resize(){
-			width = (cont.width()-100)/4;
-			//la larghezza minima della carta è 200px 
-			if(width < 200){
+			n=4;
+			cont_width = cont.width();
+			width = (cont_width-100)/n;
+			while(width < 200 && n > 1){
+				n--;
+				width = (cont_width-100)/n;
+				console.log("width: " + width);
+				console.log("n: " + n);
+			}
+			if(width<200 && n==1){
 				width = 200;
 			}
 			/*
@@ -69,13 +78,9 @@
 		var img = $(".img-clown");
 		var win = $(window);
 		//al caricamento della pagina richiamo la funzione resize per settare le dimensioni delle carte
-		$(document).ready(function(){
-			resize();
-		});
+		$(document).ready(resize);
 		//ad ogni ridimensionamento della pagina richiamo la funzione resize per settare le dimensioni delle carte
-		win.on("resize", function(){
-			resize();
-		});
+		win.on("resize", resize);
 
 		var max = -1;
 	</script>
