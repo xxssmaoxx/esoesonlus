@@ -1,20 +1,18 @@
-<?php
+﻿<?php
 	require $_SERVER["DOCUMENT_ROOT"] . "/esoes/utilities/connectDb.php";
 
 	$conn = connectDb();
 	$stmt = $conn->prepare("SELECT src, titolo, testo FROM immagini JOIN pagine ON pagine.id_img = immagini.id JOIN articoli ON pagine.id = articoli.id_pagine WHERE pagine.tipo='A' ORDER BY pagine.id DESC");
 	$res = $stmt->execute();
-	$res = $stmt->get_result()->fetch_all();
+	$res = $stmt->bind_result($src, $titolo, $testo);
 
 	$lenght = count($res);
 
 	//metto l'inizio del blocco degli articoli
 	echo "<div class=\"block-article\">";
 
-	for($i=0; $i<$lenght; $i++){
-		$img = "/esoes/uploads/" . $res[$i][0];
-		$titolo = $res[$i][1];
-		$testo = $res[$i][2];
+	for($i=0; !is_null($stmt->fetch()); $i++){
+		$img = "/esoes/uploads/" . $src;
 
 		echo "
 		<div class=\"articolo\">
@@ -30,4 +28,7 @@
 		if(($i + 1)%10 == 0){
 			echo"<p class=\"divisor\"><span class=\"little-star\">&#9734;</span><span class=\"right-left\">&#9734;</span><span class=\"star\">&#9734;</span><span class=\"right-left\">&#9734;</span><span class=\"little-star\">&#9734;</span></p></div><div class=\"block-article\">";
 		}
+	}
+
+	echo "</div>";
 ?>
