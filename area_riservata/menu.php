@@ -1,5 +1,5 @@
 <div class="sidebar list-group">
-	<a href="/esoes/area_riservata" class="list-group-item list-group-item-action active" id="profilo">Il mio profilo</a>
+	<a href="/esoes/area_riservata" class="list-group-item list-group-item-action" id="profilo">Il mio profilo</a>
 	<a href="/esoes/area_riservata/event" class="list-group-item list-group-item-action" id="event">Registrati agli eventi</a>
 	
 
