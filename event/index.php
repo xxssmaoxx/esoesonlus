@@ -36,6 +36,7 @@
 						start: '$data',
 						ora: '$ora_inizio',
 						luogo: '$luogo',
+						data: '$data'
 					},";
 		}
 		echo "],
@@ -77,6 +78,9 @@
 			<div class="descrizione bold"></div>
 			<div class="evento">
 				<div class="row">
+					<p class="col-sm-4">Luogo: </p><p class="col-sm-8 data"></p>
+				</div>
+				<div class="row">
 					<p class="col-sm-4">Luogo: </p><p class="col-sm-8 luogo"></p>
 				</div>
 				<div class="row">
@@ -84,7 +88,7 @@
 				</div>
 			</div>
 			<p class="conferma">clicca qui per registrarti all'evento</p>
-			<button class="btn btn-success">Registrati!</button>
+			<button class="btn btn-success sign-in">Registrati!</button>
 		</div>
 		<div class="esterno" id="esterno">
 			<?php include "../menu.php"; ?>
@@ -96,21 +100,41 @@
 			</div>
 		</div>
 		<script type="text/javascript">
-		var popup = document.getElementById("popup");
-		var hide = document.getElementById("btn-hide");
+		var popup = $("#popup");
+		var hide = $("#btn-hide");
+		var desc = $(".descrizione");
+		var data = $(".data");
 
-		hide.onclick = function(){
-			popup.style.display = "none";
-		}
+		hide.on("click", function(){
+			popup.hide();
+		});
 
 		function setPopupCont(calEvent){
-			var popup = $("#popup");
-			$(".descrizione").html(calEvent.title);
+			desc.html(calEvent.title);
 			$(".luogo").html(calEvent.luogo);
 			$(".ora_inizio").html(calEvent.ora);
+			data.html(calEvent.data);
 			popup.show();
-			return false;
 		}
+
+		$(".sign-in").on("click", function(){
+			var req = new XMLHttpRequest();
+			req.open("POST", "event.php");
+			req.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+			req.onreadystatechange = function(){
+				if(req.readyState == 4){
+					console.log(req.responseText);
+					if(req.responseText == "0"){
+						alert("ok");
+					}else{
+						alert("non ok");
+						alert(req.responseText);
+					}
+				}
+			};
+			req.send("data=" + data.html() + "&titolo=" + desc.html());
+			popup.hide();
+		});
 		</script>
 	</body>
 </html>
