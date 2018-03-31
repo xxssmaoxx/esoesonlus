@@ -27,6 +27,7 @@
 				<div class="row form-group">
 					<label class="col-form-label col-sm-2">Titolo</label>
 					<select id="titolo" class="col-sm-10 form-control" disabled="true">
+						
 					</select>
 				</div>
 				<div class="row form-group">
@@ -34,7 +35,6 @@
 					<input type="text" id="txt-titolo" class="form-control col-sm-10" disabled="true">
 				</div>
 				<br>
-				<span class="btn btn-link red float-right" id="del">Elimina articolo/pagina</span>
 				<label>Testo</label>
 				<textarea id="testo" name="testo" class="form-control" rows="15" contenteditable="true"></textarea>
 				<br>
@@ -84,6 +84,7 @@
 					}
 
 					function submit_edit(){
+						alert("l'evento c'è ");
 						var req = new XMLHttpRequest();
 						req.open("POST", "edit_article.php");
 						var data = new FormData();
@@ -108,37 +109,15 @@
 
 					}
 
-					function f_delete(){
-						var req = new XMLHttpRequest();
-						req.open("POST", "delete_article.php");
-						var data  = new FormData();
-						req.onreadystatechange = function(){
-							if(req.readyState == 4 && req.status == 200){
-								if(req.responseText == "OK"){
-									alert("Eliminato correttamente");
-									location.href = ".";
-								}else{
-									console.log(req.responseText);
-								}
-							}
-						}
-						data.append("tipo", tipo.value);
-						data.append("titolo", titolo.item(titolo.selectedIndex).innerHTML);
-						data.append("id", titolo.value);
-						req.send(data);
-					}
-
 
 					window.onload = function(){
 						titolo = document.getElementById("titolo");
 						tipo = document.getElementById("tipo");
 						var submit = document.getElementById("invia");
-						var del = document.getElementById("del");
 						submit.onclick = submit_edit;
-						tipo.onchange = cambiato;
-						titolo.onchange = title_changed;
-						del.onclick = f_delete;
-					}
+						tipo.onchange = cambiato;													
+						titolo.onchange = title_changed;	
+					}						
 				</script>
 	    </div>
 	</div>

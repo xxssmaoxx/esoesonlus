@@ -165,7 +165,7 @@ cancelName.onclick = function(e) {
 
 cancelMail.onclick = function(e) {
     toggleConEdit(mail);
-    changeValue(changeMail, "Cambia nome");
+    changeValue(changeMail, "Cambia E-mail");
     toggle(e.target);
     mail.innerHTML = oldMail;
     active[3] = 0;
