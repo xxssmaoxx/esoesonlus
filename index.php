@@ -1,71 +1,136 @@
+<?php require "check_login.php";?>
+
 <!DOCTYPE html>
 <html>
-	<head>
-		<meta charset="utf-8">
-		<?php include "./utilities/imports.html" ?>
-        <link rel="stylesheet" href="./css/home.css">
-		
-		<title>ESO ES Onlus</title>
-		<style>
-			
-		</style>
-	</head>
-	<body>
-		<?php include "./utilities/menu.php"; ?>
-		<div class="container">
-        	<div class="jumbotron text-center animated zoomIn">
-			<br>
-			<br>
-			<h5 class="bold">ESO ES ONLUS</h5>
-			<p>&nbsp;</p>
-			<p class="">clownterapia, animazione socio-teatrale&nbsp;in contesti di disagio&nbsp;e performance artistiche a sostegno&nbsp;di&nbsp;cause sociali e progetti di solidarietà internazionale!</p>
-            <p>&nbsp;</p>
-			<p><a href="/esoes/chi_siamo"><button class="button pointer animated bounceHover">APPROFONDISCI!</button></a></p>
+
+<head>
+    <meta charset="utf-8">
+    <?php 
+        include "./imports_riservata.html";
+        include $_SERVER["DOCUMENT_ROOT"] . "/esoes/utilities/imports.html";
+        require $_SERVER["DOCUMENT_ROOT"] . "/esoes/utilities/connectDb.php";
+        ?>
+    <title>ESO ES Onlus | Area Riservata</title>
+    <link href='./css/home.css' rel='stylesheet' />
+</head>
+
+<body>
+    <div class="esterno">
+        <?php include "menu.php"; ?>
+        <div class="contenitore text-center">
+
+            
+            <div id="popup">
+                <span id="btn-hide" class="fas fa-angle-up"></span>
+                <strong>Selezionare l'immagine da caricare</strong>
+                <input type="file" id="image" class="float-right">
+                <img src="">
             </div>
-		</div>
-		<div id="container">
-        	<a href="/esoes/opeguate_libro_2016">
-				<div class="sezione pointer animated pulseHover">
-					<img class="img-responsive" src="img/home/libro.jpg">
-                    <p>&nbsp;</p>
-					<h4 class="bold titolo_card">#OPEGUATE2016 – Il libro</h4>
-					<p class="small">
-						La gente non guarda le foto perché sono belle, ma perché c’è bisogno di guardare questo nostro pianeta, e le immagini che lo raccontano ~ Sebastiaõ Salgado #OPEGUATE2016 racconta attraverso le immagini un’esperienza intensa e straordinaria, ricca di sensazioni e di umanità. Storie che si intrecciano attraverso i colori e gli sguardi, attraverso occhi che parlano e narrano di…
-					</p>
-				</div>
-            </a>
-			<a href="/esoes/borse_studio">
-				<div class="sezione pointer animated pulseHover">
-					<img class="img-responsive" src="img/home/borsedistudio.jpg">
-                    <p>&nbsp;</p>
-					<h4 class="bold titolo_card">Programma Borse di Studio</h4>
-					<p class="small">
-						Lo studio è un diritto di ogni bambino ma in alcune zone del Guatemala è ancora un privilegio di pochi. Il Programma Borse di Studio è un progetto nato per consentire a bambini meritevoli, provenienti da famiglie disagiate, l’accesso all’istruzione primaria.
-						Eso Es reputa l’istruzione una speranza che anima il futuro e il cambiamento: 25 nel 2016 le Borse erogate!
-					</p>
-				</div>
-			</a>
-			<a href="/esoes/5_per_mille">
-				<div class="sezione pointer animated pulseHover">
-					<img class="img-responsive" src="img/home/5x1000.jpg">
-                    <p>&nbsp;</p>
-					<h4 class="bold titolo_card">5 per Mille a Eso Es!</h4>
-					<p class="small">
-						Puoi sostenere Eso Es Onlus con il 5 per Mille.
-						Come si fa? È davvero semplice: compila il Modulo 730, il CU oppure il Modello Unico, firma nel riquadro “Sostegno delle organizzazioni non lucrative di utilità sociale” e indica il codice fiscale di Eso Es: 96090840040. Si trasformerà in un anno di studio per molti bambini meritevoli. Passa parola su Facebook e con Whatsapp!
-					</p>
-				</div>
-			</a>
-            <p>&nbsp;</p>
-            <p>&nbsp;</p>
-            <p>&nbsp;</p>
-		</div>
-		<?php include "./utilities/footer.html"; ?>	
-		<script type="text/javascript" src="./js/home.js">
-			/*
-			*In questo file c'è lo script che serve per dare alle 3 sezioni la stessa altezza.
-			*Inoltre è anche presente il ridimensionamento del titolo, che permette di allineare il testo sottostante
-			*/
-		</script>
-	</body>
+            <img src= <?php 
+                $conn = connectDb();
+                $stmt = $conn->prepare("SELECT immagini.src FROM immagini JOIN clown ON immagini.id = clown.id_img WHERE user=?");
+                echo $conn->error;
+                $stmt->bind_param("s", $_SESSION['user']);
+                echo $stmt->error;
+                $stmt->execute();
+                $stmt->bind_result($img);
+                $stmt->fetch();
+                echo  "\"/esoes/uploads/$img\"";
+            ?>
+            class="img-profilo center">
+            <button id="cambia_immagine" class="btn btn-primary float-right">Cambia immagine</button>
+            <br>
+            <h1 id="clown-name" class="red center bold" contenteditable="false">
+            <?php 
+                $conn = connectDb();
+                $stmt = $conn->prepare("SELECT nome_clown FROM clown WHERE user=?");
+                $stmt->bind_param("s", $_SESSION['user']);
+                $stmt->execute();
+                $stmt->bind_result($nome);
+                $stmt->fetch();
+                echo $nome;
+            ?>
+            </h1>
+            <div class="text-right">
+                <button id="submit-name" class="btn btn-primary">Cambia nome</button><button id="cancel-name" class="btn btn-danger" style="display:none;">Annulla</button><br>
+                <span id="change-pwd" class="text-right">o <a href="#new-pwd" class="blue">Cambia password</a></span>
+            </div>
+
+            <p id="mail" contenteditable="false">
+            <?php 
+                $conn = connectDb();
+                $stmt = $conn->prepare("SELECT mail FROM clown WHERE user=?");
+                $stmt->bind_param("s", $_SESSION['user']);
+                $stmt->execute();
+                $stmt->bind_result($mail);
+                $stmt->fetch();
+                echo $mail;
+            ?>
+            </p>
+            <div class="text-right">
+                <button id="change-mail" class="btn btn-primary">Cambia E-mail</button><button id="cancel-mail" class="btn btn-danger" style="display:none;">Annulla</button><br>
+            </div>
+
+            <form id="pwd" class="text_center" style="display:none; margin:auto;">
+                <span class="bold">Inserire la nuova password:</span> <input type="password" id="new-pwd" class="text_input small_text"></p>
+                <span class="bold">Confermare la nuova password:</span><input type="password" id="confirm-pwd" class="text_input small_text">
+                <br>
+                <input type="submit" id="submit-pwd" class="btn btn-primary" value="conferma">
+                <input type="button" id="cancel-pwd" class="btn btn-danger" value="annulla">
+            </form>
+            <br>
+
+            <h2>La tua frase</h2>
+            <div id="frase" contenteditable="false">
+                <?php
+                        $conn = connectDb();
+                        $stmt = $conn->prepare("SELECT frase FROM clown WHERE user=?");
+                        $stmt->bind_param("s", $_SESSION['user']);
+                        $stmt->execute();
+                        $stmt->bind_result($frase);
+                        $stmt->fetch();
+                        echo $frase;
+                ?>
+            </div>
+            <div class="text-right">
+                <button id="submit-frase" class="btn btn-primary text-right">Cambia la tua frase</button><button id="cancel-frase" class="btn btn-danger" style="display:none;">Annulla</button>
+            </div>
+        </div>
+    </div>
+    <div class="presenze">
+        <h3>*** Eventi a cui partecipi ***</h3>
+        <table class="table">
+            <thead class="bg-blue white">
+                <tr>
+                    <th scope="col">Titolo</th>
+                    <th scope="col">Luogo</th>
+                    <th scope="col">Indirizzo</th>
+                    <th scope="col">Data</th>
+                    <th scope="col">Ora inizio</th>
+                </tr>
+            </thead>
+            <tbody>
+            <?php
+                $conn = connectDb();
+                $stmt = $conn->prepare("SELECT descrizione, luogo, indirizzo, data, ora_inizio FROM eventi JOIN presenze ON eventi.id = presenze.id_evento WHERE nome_clown=? ORDER BY data, ora_inizio");
+                $stmt->bind_param("s", $nome);
+                $stmt->execute();
+                $stmt->bind_result($descrizione, $luogo, $indirizzo, $data, $ora_inizio);
+                while(!is_null($stmt->fetch())){
+                    echo "
+                    <tr>
+                        <th scope=\"row\">$descrizione</th>
+                        <td>$luogo</td>
+                        <td>$indirizzo</td>
+                        <td>$data</td>
+                        <td>$ora_inizio</td>
+                    </tr>";
+                }      
+            ?>
+            </tbody>
+        </table>
+    </div>
+    <script src="./js/home.js"></script>
+</body>
+
 </html>

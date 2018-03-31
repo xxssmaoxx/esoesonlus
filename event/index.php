@@ -10,9 +10,9 @@
 		<?php
 		require $_SERVER["DOCUMENT_ROOT"] . "/esoes/utilities/connectDb.php";
 		$conn = connectDb();
-		$stmt = $conn->prepare("SELECT descrizione, luogo, data, ora_inizio FROM eventi");
+		$stmt = $conn->prepare("SELECT id, descrizione, luogo, indirizzo, data, ora_inizio FROM eventi");
 		$res = $stmt->execute();
-		$stmt->bind_result($descrizione, $luogo, $data, $ora_inizio);
+		$stmt->bind_result($event_id, $descrizione, $luogo, $indirizzo, $data, $ora_inizio);
 
 		echo "<script type=\"text/javascript\">
 				$(document).ready(function(){
@@ -36,7 +36,8 @@
 						start: '$data',
 						ora: '$ora_inizio',
 						luogo: '$luogo',
-						data: '$data'
+						indirizzo: '$indirizzo',
+						id: '$event_id'
 					},";
 		}
 		echo "],
@@ -47,39 +48,15 @@
 	});
 
 		</script>"; ?>
-		<style>
-			#calendar {
-				max-width: 900px;
-				margin: 0 auto;
-			}
-			.descrizione{
-				margin-bottom: 2%;
-				font-size: 1.5em;
-			}
-			.conferma{
-				margin-top: 3%;
-			}
-			#btn-hide{
-				width: 30px;
-				height: 30px;
-				font-size: 1.8rem;
-			}
-			.evento{
-				background-color: white;
-				border-radius: 10px;
-				padding: 3%;
-			}
-		</style>
-		<link rel="stylesheet" type="text/css" href="https://code.jquery.com/ui/1.12.1/themes/ui-lightness/jquery-ui.css">
+
+	<link rel="stylesheet" type="text/css" href="./style.css">
+
 	</head>
 	<body>
 		<div id="popup">
 			<div id="btn-hide" class="fa fa-angle-up"></div>
 			<div class="descrizione bold"></div>
 			<div class="evento">
-				<div class="row">
-					<p class="col-sm-4">Luogo: </p><p class="col-sm-8 data"></p>
-				</div>
 				<div class="row">
 					<p class="col-sm-4">Luogo: </p><p class="col-sm-8 luogo"></p>
 				</div>
@@ -104,6 +81,7 @@
 		var hide = $("#btn-hide");
 		var desc = $(".descrizione");
 		var data = $(".data");
+		var event_id = 0;
 
 		hide.on("click", function(){
 			popup.hide();
@@ -111,9 +89,9 @@
 
 		function setPopupCont(calEvent){
 			desc.html(calEvent.title);
-			$(".luogo").html(calEvent.luogo);
+			$(".luogo").html(calEvent.luogo + "; " + calEvent.indirizzo);
 			$(".ora_inizio").html(calEvent.ora);
-			data.html(calEvent.data);
+			event_id = calEvent.id;
 			popup.show();
 		}
 
@@ -125,14 +103,14 @@
 				if(req.readyState == 4){
 					console.log(req.responseText);
 					if(req.responseText == "0"){
-						alert("ok");
+						alert("Sei stato iscritto all'evento: " + desc.html());
 					}else{
 						alert("non ok");
 						alert(req.responseText);
 					}
 				}
 			};
-			req.send("data=" + data.html() + "&titolo=" + desc.html());
+			req.send("id=" + event_id);
 			popup.hide();
 		});
 		</script>
