@@ -6,8 +6,6 @@
 	$res = $stmt->execute();
 	$res = $stmt->bind_result($src, $titolo, $testo);
 
-	$lenght = count($res);
-
 	//metto l'inizio del blocco degli articoli
 	echo "<div class=\"block-article\">";
 
@@ -19,7 +17,7 @@
 			<img class=\"img-articolo\" src=\"$img\">
 			<div class=\"inline\">
 				<h1 class=\"titolo bold\">$titolo</h1>
-				<span class=\"fa fa-angle-double-down show-text\" id=\"show-text\"></span>
+				<span class=\"black fa fa-angle-double-down show-text\" id=\"show-text\"></span>
 			</div>
 			<div class=\"testo\" id=\"testo-$i\">$testo</div>
 		</div>";
