@@ -95,10 +95,42 @@
             <div class="text-right">
                 <button id="submit-frase" class="btn btn-primary text-right">Cambia la tua frase</button><button id="cancel-frase" class="btn btn-danger" style="display:none;">Annulla</button>
             </div>
-
-            <script src="./js/home.js"></script>
         </div>
     </div>
+    <div class="presenze">
+        <h3>*** Eventi a cui partecipi ***</h3>
+        <table class="table">
+            <thead class="bg-blue white">
+                <tr>
+                    <th scope="col">Titolo</th>
+                    <th scope="col">Luogo</th>
+                    <th scope="col">Indirizzo</th>
+                    <th scope="col">Data</th>
+                    <th scope="col">Ora inizio</th>
+                </tr>
+            </thead>
+            <tbody>
+            <?php
+                $conn = connectDb();
+                $stmt = $conn->prepare("SELECT descrizione, luogo, indirizzo, data, ora_inizio FROM eventi JOIN presenze ON eventi.id = presenze.id_evento WHERE nome_clown=? ORDER BY data, ora_inizio");
+                $stmt->bind_param("s", $nome);
+                $stmt->execute();
+                $stmt->bind_result($descrizione, $luogo, $indirizzo, $data, $ora_inizio);
+                while(!is_null($stmt->fetch())){
+                    echo "
+                    <tr>
+                        <th scope=\"row\">$descrizione</th>
+                        <td>$luogo</td>
+                        <td>$indirizzo</td>
+                        <td>$data</td>
+                        <td>$ora_inizio</td>
+                    </tr>";
+                }      
+            ?>
+            </tbody>
+        </table>
+    </div>
+    <script src="./js/home.js"></script>
 </body>
 
 </html>

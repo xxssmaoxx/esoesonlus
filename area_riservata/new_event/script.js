@@ -1,10 +1,19 @@
 var confirm = document.getElementById("create");
 
+$(document).ready(function(){
+	$("#datepicker").datepicker({
+		dateFormat: "yy-mm-dd"
+	});
+	$("#timepicker").timepicker();
+});
+
+
+
 confirm.onclick = function(){
 	var descrizione = document.getElementById("titolo");
 	var luogo = document.getElementById("luogo");
 	var indirizzo = document.getElementById("indirizzo");
-	var data = document.getElementById("date");
+	var data = document.getElementById("datepicker");
 	var tipo = document.getElementById("tipo")
 
 

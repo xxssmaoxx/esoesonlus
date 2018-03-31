@@ -4,7 +4,8 @@ button {
 }
 
 .img-profilo {
-    width: 50%;
+    width: 400px;
+    height: 300px;
     margin-bottom: 2%;
 }
 
@@ -47,4 +48,9 @@ button {
 
 #cambia_immagine{
     display: block;
+}
+
+.presenze{
+    margin: 3%;
+    text-align: center;
 }

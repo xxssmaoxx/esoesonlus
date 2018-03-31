@@ -13,7 +13,7 @@
    <div class="esterno">
 	   <?php include $_SERVER["DOCUMENT_ROOT"] . "/esoes/area_riservata/menu.php"; ?>
 	      <div class="contenitore">
-				<label>Carica un'immagine (facoltativo)</label>
+				<label>Carica un'immagine</label>
 				<div class="load-image form-control center pointer" id="immagine"><i class=" fa fa-image"></i></div>
 				<input style="" type="file" id ="load" name="load" accept=".jpg, .gif, .png">
 	<script>

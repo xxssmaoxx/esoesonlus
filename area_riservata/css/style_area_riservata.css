@@ -33,7 +33,6 @@ html, body{
 .esterno{
 	display: flex;
 	align-content: space-around;
-	height: 100%;
 }
 
 .sidebar{
