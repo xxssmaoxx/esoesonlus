@@ -49,7 +49,6 @@
 				margin: 0 auto;
 			}
 		</style>
-		<link rel="stylesheet" type="text/css" href="https://code.jquery.com/ui/1.12.1/themes/ui-lightness/jquery-ui.css">
 	</head>
 	<body>
 		<?php include "../utilities/menu.php"; ?>
