@@ -5,11 +5,12 @@
 		<?php require $_SERVER["DOCUMENT_ROOT"] . "/esoes/area_riservata/check_login.php" ?>
 		<?php include $_SERVER["DOCUMENT_ROOT"] . "/esoes/utilities/imports.html" ?>
 		<?php include $_SERVER["DOCUMENT_ROOT"] . "/esoes/utilities/importsCalendar.html" ?>
-		<?php include $_SERVER["DOCUMENT_ROOT"] . "/esoes/utilities/importsTimePicker.html" ?>
 		<?php include $_SERVER["DOCUMENT_ROOT"] . "/esoes/area_riservata/imports_riservata.html" ?>
-		
+		<script type="text/javascript" src="/esoes/js/jquery-ui/datepicker-it.js"></script>
 		<title>ESO ES Onlus | Nuovo evento</title>
 		<link href='./style.css' rel='stylesheet' />
+		<script type="text/javascript" src="/esoes/js/timepicker/dist/wickedpicker.min.js"></script>
+		<link rel="stylesheet" type="text/css" href="/esoes/js/timepicker/dist/wickedpicker.min.css">
 	</head>
 	<body>
 		<div class="esterno">
@@ -39,7 +40,7 @@
 					<div class="form-group row">
 						<label for="date" class="col-sm-2 col-form-label">Giorno:</label>
 						<div class="col-sm-10">
-							<input type="text" class="form-control" id="datepicker" placeholder="yy-mm-dd">
+							<input type="text" class="form-control" id="datepicker" placeholder="gg-mm-aaaa">
 						</div>
 					</div>
 					<div class="form-group row">

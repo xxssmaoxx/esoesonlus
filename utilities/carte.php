@@ -14,7 +14,7 @@
 
 		echo "
 		<div class=\"carte animated pulseHover\">
-			<span class=\"fa fa-times-circle delete-user\" id=\"$user\"></span>
+			<div class=\"x\"><span class=\"fa fa-times-circle delete-user\" id=\"$user\"></span></div>
 			<div class=\"info\">
 				<img class=\"img-clown\" src=\"$img\">
 				<p class=\"name\">$name</p>
