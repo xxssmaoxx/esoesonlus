@@ -4,6 +4,7 @@ a .nome{
 }
 
 .add-card{
+	margin-top: 30px;
 	font-size: 7em;
 	color: #BBBBCA;
 }
@@ -32,12 +33,12 @@ a .nome{
 	margin: 10px;
 	width: 220px;
 	background-color: white;
-	padding: 20px;
 	box-shadow: 3px 6px 10px #AAAAAA;
 	display: inline-block;
 	text-align: center;
 	overflow-wrap: break-word;
 	overflow: hidden;
+	vertical-align: top;
 }
 
 .carte:hover{
@@ -50,6 +51,10 @@ a .nome{
 	font-size: 2em;
 }
 
+.info{
+	margin: 3%;
+}
+
 .img-clown{
 	width: 180px;
 	height: 160px;
@@ -57,4 +62,11 @@ a .nome{
 
 .delete-user{
 	float: right;
+	font-size: 1.5em;
+	opacity: 0.8;
+}
+
+.x{
+	width: 100%;
+	height: 20px;
 }

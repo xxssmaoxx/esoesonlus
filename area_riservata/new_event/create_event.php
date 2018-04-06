@@ -23,7 +23,7 @@
 	
 	$conn = connectDb();	
 	$stmt = $conn->prepare("INSERT INTO eventi (descrizione, luogo, indirizzo, giorno, tipo)
-							VALUES(?, ?, ?, STR_TO_DATE(?, '%Y-%m-%d'), ?)");
+							VALUES(?, ?, ?, STR_TO_DATE(?, '%d-%m-%Y'), ?)");
 	$stmt->bind_param("sssss", $titolo, $luogo, $indirizzo, $giorno, $tipo);
 	if(!$stmt->execute()){
 		//exit("Errore durante l'esecuzione della query : " . $stmt->error());

@@ -2,9 +2,16 @@ var confirm = document.getElementById("create");
 
 $(document).ready(function(){
 	$("#datepicker").datepicker({
-		dateFormat: "yy-mm-dd"
+		dateFormat: "dd-mm-yy"
 	});
-	$("#timepicker").timepicker();
+	$.datepicker.setDefaults(
+	  $.extend(
+	    $.datepicker.regional['it']
+	  )
+	);
+	$("#timepicker").wickedpicker({
+		twentyFour: true
+	});
 });
 
 

@@ -1,6 +1,6 @@
 <?php
     $conn = connectDb();
-    $stmt = $conn->prepare("SELECT user, descrizione, luogo, indirizzo, data, ora_inizio FROM eventi JOIN presenze ON eventi.id = presenze.id_evento ORDER BY user");
+    $stmt = $conn->prepare("SELECT nome_clown, descrizione, luogo, indirizzo, data, ora_inizio FROM eventi JOIN presenze ON eventi.id = presenze.id_evento JOIN clown ON clown.user = presenze.user ORDER BY nome_clown");
     $stmt->execute();
     $stmt->bind_result($clown_name, $descrizione, $luogo, $indirizzo, $data, $ora_inizio);
     $stmt->fetch();
@@ -17,13 +17,14 @@
                     <th scope=\"col\">Ora inizio</th>
                 </thead>
                 <tbody>
+        ";
+        echo "
                 <tr>
                     <th scope=\"row\">$descrizione</th>
                     <td>$luogo, $indirizzo</td>
                     <td>$data</td>
                     <td>$ora_inizio</td>
-                </tr>
-        ";
+                </tr>"; 
     while(!is_null($stmt->fetch())){
         //controllo se è ancora il clown di prima
         if($precedente == $clown_name){

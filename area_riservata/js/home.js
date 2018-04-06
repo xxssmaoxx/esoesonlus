@@ -77,7 +77,7 @@ changeName.onclick = function(e) {
                     }
                 }
             };
-            data.append("name", oldName);
+            data.append("name", oldName.replace("<br>", ""));
             req.send(data);
         } else {
             alert("Per modificare devi inserire un nome diverso!");
