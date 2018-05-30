@@ -8,12 +8,13 @@ $conn = connectDb();
 
 if($_FILES['load']['name']!= ""){
 	$onlytext = false;
-	$img_name = "/esoes/uploads/" . basename($_FILES['load']['name']);
+	$tmp = basename($_FILES['load']['name']);
+	$img_name = "/esoes/uploads/" . $tmp;
 	$dest_url = $_SERVER["DOCUMENT_ROOT"] .  $img_name;
 	$query_img = "INSERT INTO immagini VALUES (NULL,?, ?)";
 	
 	if($stmt = $conn->prepare($query_img)){
-	$stmt->bind_param('ss', $img_name, $tipo_articolo);	
+	$stmt->bind_param('ss', $tmp, $tipo_articolo);	
 	if(!$stmt->execute()) exit("Errore durante l'esecuzione della query : " . $stmt->error);
 	}else{
 		echo $conn->error;

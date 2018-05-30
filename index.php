@@ -2,13 +2,10 @@
 <html>
 	<head>
 		<meta charset="utf-8">
-		<?php include "./utilities/imports.html" ?>
+		<?php include "./utilities/imports.html"; ?>
         <link rel="stylesheet" href="./css/home.css">
 		
 		<title>ESO ES Onlus</title>
-		<style>
-			
-		</style>
 	</head>
 	<body>
 		<?php include "./utilities/menu.php"; ?>
@@ -24,41 +21,19 @@
             </div>
 		</div>
 		<div id="container">
-        	<a href="/esoes/opeguate_libro_2016">
-				<div class="sezione pointer animated pulseHover">
-					<img class="img-responsive" src="img/home/libro.jpg">
-                    <p>&nbsp;</p>
-					<h4 class="bold titolo_card">#OPEGUATE2016 – Il libro</h4>
-					<p class="small">
-						La gente non guarda le foto perché sono belle, ma perché c’è bisogno di guardare questo nostro pianeta, e le immagini che lo raccontano ~ Sebastiaõ Salgado #OPEGUATE2016 racconta attraverso le immagini un’esperienza intensa e straordinaria, ricca di sensazioni e di umanità. Storie che si intrecciano attraverso i colori e gli sguardi, attraverso occhi che parlano e narrano di…
-					</p>
-				</div>
-            </a>
-			<a href="/esoes/borse_studio">
-				<div class="sezione pointer animated pulseHover">
-					<img class="img-responsive" src="img/home/borsedistudio.jpg">
-                    <p>&nbsp;</p>
-					<h4 class="bold titolo_card">Programma Borse di Studio</h4>
-					<p class="small">
-						Lo studio è un diritto di ogni bambino ma in alcune zone del Guatemala è ancora un privilegio di pochi. Il Programma Borse di Studio è un progetto nato per consentire a bambini meritevoli, provenienti da famiglie disagiate, l’accesso all’istruzione primaria.
-						Eso Es reputa l’istruzione una speranza che anima il futuro e il cambiamento: 25 nel 2016 le Borse erogate!
-					</p>
-				</div>
-			</a>
-			<a href="/esoes/5_per_mille">
-				<div class="sezione pointer animated pulseHover">
-					<img class="img-responsive" src="img/home/5x1000.jpg">
-                    <p>&nbsp;</p>
-					<h4 class="bold titolo_card">5 per Mille a Eso Es!</h4>
-					<p class="small">
-						Puoi sostenere Eso Es Onlus con il 5 per Mille.
-						Come si fa? È davvero semplice: compila il Modulo 730, il CU oppure il Modello Unico, firma nel riquadro “Sostegno delle organizzazioni non lucrative di utilità sociale” e indica il codice fiscale di Eso Es: 96090840040. Si trasformerà in un anno di studio per molti bambini meritevoli. Passa parola su Facebook e con Whatsapp!
-					</p>
-				</div>
-			</a>
-            <p>&nbsp;</p>
-            <p>&nbsp;</p>
-            <p>&nbsp;</p>
+			<?php
+				require $_SERVER["DOCUMENT_ROOT"] . "/esoes/utilities/connectDb.php";
+
+				$conn = connectDb();
+				$stmt = $conn->prepare("SELECT titolo, testo, src FROM articoli, pagine, immagini WHERE articoli.id_pagine = pagine.id AND pagine.id_img = immagini.id AND pagine.tipo = 'H' ");
+				echo $conn->error;
+				$stmt->execute();
+				$stmt->bind_result($titolo, $testo, $src);
+				while($stmt->fetch() != NULL){
+					$content = substr($testo, 0, 300) . "...";
+					echo "<div class='sezione'><img class='img-responsive' src='/esoes/uploads/$src'><p>&nbsp;</p><h4 class='bold titolo_card'>$titolo</h4><p class='small'>$content</p></div>";
+				}
+			?>
 		</div>
 		<?php include "./utilities/footer.html"; ?>	
 		<script type="text/javascript" src="./js/home.js">

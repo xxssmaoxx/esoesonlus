@@ -6,8 +6,7 @@
 	$indirizzo = $_POST["indirizzo"];
 	$giorno = $_POST["giorno"];
 	$tipo = $_POST["tipo"];
-	
-	echo $tipo;
+	$ora = $_POST["ora"];	
 
 	switch ($tipo) {
 		case 0:
@@ -19,15 +18,13 @@
 			break;
 	}
 	
-	echo $giorno;	
-	
 	$conn = connectDb();	
-	$stmt = $conn->prepare("INSERT INTO eventi (descrizione, luogo, indirizzo, giorno, tipo)
-							VALUES(?, ?, ?, STR_TO_DATE(?, '%d-%m-%Y'), ?)");
-	$stmt->bind_param("sssss", $titolo, $luogo, $indirizzo, $giorno, $tipo);
+	$stmt = $conn->prepare("INSERT INTO eventi (descrizione, luogo, indirizzo, data, tipo, ora_inizio)
+							VALUES(?, ?, ?, STR_TO_DATE(?, '%d-%m-%Y'), ?, STR_TO_DATE(?, '%H:%i'))");
+	$stmt->bind_param("ssssss", $titolo, $luogo, $indirizzo, $giorno, $tipo, $ora);
 	if(!$stmt->execute()){
 		//exit("Errore durante l'esecuzione della query : " . $stmt->error());
-		var_dump($stmt);
+		echo $stmt->error;
 	}else{
 	  echo "0";
 	}

@@ -4,9 +4,9 @@ button {
 }
 
 .img-profilo {
-    width: 400px;
-    height: 300px;
-    margin-bottom: 2%;
+	width: 100%;
+	max-width: 700px;
+	border-radius: 10px;
 }
 
 #pwd {
@@ -26,6 +26,8 @@ button {
 .center{
     margin: auto;
 }
+
+
 
 
 #mail{

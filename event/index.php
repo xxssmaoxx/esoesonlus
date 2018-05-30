@@ -3,22 +3,20 @@
 	<head>
 		<meta charset="utf-8">
 		<title>ESO ES Onlus | Eventi</title>
-		<?php include "../imports_riservata.html"; ?>
         <?php include $_SERVER["DOCUMENT_ROOT"] . "/esoes/utilities/imports.html"; ?>
 		<?php require $_SERVER["DOCUMENT_ROOT"] . "/esoes/utilities/importsCalendar.html"; ?>
-		<?php require "../check_login.php"; ?>
 		<?php
 		require $_SERVER["DOCUMENT_ROOT"] . "/esoes/utilities/connectDb.php";
 		$conn = connectDb();
-		$stmt = $conn->prepare("SELECT descrizione, luogo, data, ora_inizio FROM eventi");
+		$stmt = $conn->prepare("SELECT descrizione, luogo, indirizzo, data, ora_inizio FROM eventi WHERE tipo = 'S'");
 		$res = $stmt->execute();
-		$stmt->bind_result($descrizione, $luogo, $data, $ora_inizio);
+		$stmt->bind_result($descrizione, $luogo, $indirizzo, $data, $ora_inizio);
 
 		echo "<script type=\"text/javascript\">
 				$(document).ready(function(){
 					$('#calendario').fullCalendar({
 						locale: 'it',
-						themeSystem: 'jquery-ui',
+						themeSystem: 'bootstrap4',
 						header: {
 							left: 'prev',
 							center: 'title',
@@ -36,6 +34,7 @@
 						start: '$data',
 						ora: '$ora_inizio',
 						luogo: '$luogo',
+						indirizzo: '$indirizzo',
 						data: '$data'
 					},";
 		}
@@ -48,9 +47,12 @@
 
 		</script>"; ?>
 		<style>
-			#calendar {
+			#calendario{
 				max-width: 900px;
 				margin: 0 auto;
+			}
+			.fc-view-container{
+				background: white;
 			}
 			.descrizione{
 				margin-bottom: 2%;
@@ -70,7 +72,6 @@
 				padding: 3%;
 			}
 		</style>
-		<link rel="stylesheet" type="text/css" href="https://code.jquery.com/ui/1.12.1/themes/ui-lightness/jquery-ui.css">
 	</head>
 	<body>
 		<div id="popup">
@@ -78,20 +79,18 @@
 			<div class="descrizione bold"></div>
 			<div class="evento">
 				<div class="row">
-					<p class="col-sm-4">Luogo: </p><p class="col-sm-8 data"></p>
+					<p class="col-sm-4">Luogo: </p><p class="col-sm-8 luogo"></p>
 				</div>
 				<div class="row">
-					<p class="col-sm-4">Luogo: </p><p class="col-sm-8 luogo"></p>
+					<p class="col-sm-4">indirizzo: </p><p class="col-sm-8 indirizzo"></p>
 				</div>
 				<div class="row">
 					<p class="col-sm-4">Ora di inizio: </p><p class="col-sm-8 ora_inizio"></p>
 				</div>
 			</div>
-			<p class="conferma">clicca qui per registrarti all'evento</p>
-			<button class="btn btn-success sign-in">Registrati!</button>
 		</div>
 		<div class="esterno" id="esterno">
-			<?php include "../menu.php"; ?>
+			<?php include $_SERVER["DOCUMENT_ROOT"] . "/esoes/utilities/menu.php"; ?>
 	    	<div class="contenitore">
 	        	<h2 class="text-center bold">Questi sono i nostri eventi futuri:</h2>
 	            <p class="text-center">Scorri il calendario e iscriviti ai nostri allenamenti e spettacoli!</p>
@@ -99,11 +98,11 @@
 	        	</div>
 			</div>
 		</div>
+		<?php include $_SERVER["DOCUMENT_ROOT"] . "/esoes/utilities/footer.html"; ?>
 		<script type="text/javascript">
 		var popup = $("#popup");
 		var hide = $("#btn-hide");
 		var desc = $(".descrizione");
-		var data = $(".data");
 
 		hide.on("click", function(){
 			popup.hide();
@@ -112,29 +111,10 @@
 		function setPopupCont(calEvent){
 			desc.html(calEvent.title);
 			$(".luogo").html(calEvent.luogo);
+			$(".indirizzo").html(calEvent.indirizzo);
 			$(".ora_inizio").html(calEvent.ora);
-			data.html(calEvent.data);
 			popup.show();
 		}
-
-		$(".sign-in").on("click", function(){
-			var req = new XMLHttpRequest();
-			req.open("POST", "event.php");
-			req.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-			req.onreadystatechange = function(){
-				if(req.readyState == 4){
-					console.log(req.responseText);
-					if(req.responseText == "0"){
-						alert("ok");
-					}else{
-						alert("non ok");
-						alert(req.responseText);
-					}
-				}
-			};
-			req.send("data=" + data.html() + "&titolo=" + desc.html());
-			popup.hide();
-		});
 		</script>
 	</body>
 </html>

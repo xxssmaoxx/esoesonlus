@@ -16,6 +16,7 @@
 	margin: 1.5%;
 	border-radius: 12px;
 	box-shadow: 2px 4px 7px #AAAFFF;
+	background: white;
 	font-family: inherit;
 	padding:0%;
 	min-width:250px;
@@ -40,5 +41,6 @@
 }      
 
 #header {
+	background: white;
 	background-image: url("../img/home/home-page1.jpg");
 }

@@ -9,21 +9,6 @@
 
 	//Query inserimento utenti con prepared statement, la seconda analoga per le informazioni del clown.
 
-
-
-
-	$s = $conn->prepare("DELETE FROM clown WHERE user = ?");
-
-	$s->bind_param("s", $user);
-
-	$s->execute();
-
-	$s = $conn->prepare("DELETE FROM utenti WHERE user = ?");
-
-	$s->bind_param("s", $user);
-
-	$s->execute();
-
 	$stmt = $conn->prepare("SELECT mail FROM clown WHERE user = ?");
 
 	if($stmt){
@@ -48,6 +33,18 @@
 		echo -1;
 	}
 */
+
+	$s = $conn->prepare("DELETE FROM clown WHERE user = ?");
+
+	$s->bind_param("s", $user);
+
+	$s->execute();
+
+	$s = $conn->prepare("DELETE FROM utenti WHERE user = ?");
+
+	$s->bind_param("s", $user);
+
+	$s->execute();
 
 	echo "0";
 ?>

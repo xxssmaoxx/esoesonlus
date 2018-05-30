@@ -1,9 +1,9 @@
-@font-face {
+/*@font-face {
   font-family: 'Open Sans';
   font-style: normal;
   font-weight: 400;
   src: local('Open Sans Regular'), local('OpenSans-Regular'), url(../webfonts/opensans.ttf) format('truetype');
-}
+}*/
 
 /**
 prova multilevel menu
@@ -72,15 +72,6 @@ prova multilevel menu
 
 }
 
-.dropdown-toggle::after{
-  border-style: none;
-}
-
-.dropdown-toggle:hover::after{
-  border-style: solid;
-  transition: 0.2s;
-}
-
 .last-item{
   border-style: none;
 }
@@ -93,11 +84,6 @@ prova multilevel menu
 
 .navbar-nav .nav-link{
 	color: #FFF;
-}
-
-.nav-link:hover{
-  color: #FFDC00;
-  transition: 0.5s;
 }
 
 .navbar-toggler{
@@ -122,11 +108,12 @@ prova multilevel menu
 
 body,html{
   margin:0;
-  padding: 0;
+  padding: 0;	  
 }
 
 body{
   font-family: 'Open Sans', sans-serif;
+  background-image: url("back.jpg");
 }
 
 /*HEADER*/
@@ -138,6 +125,7 @@ body{
 	padding: 3% 3% 10% 3% ;
 	background-repeat: no-repeat;
 	background-size: cover;
+  background: white; /*default*/
 }
 
 #header img{

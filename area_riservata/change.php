@@ -44,8 +44,53 @@ if(isset($_POST["mail"])){
 	echo "0";
 }
 
-if(isset($_FILES["image"])){
+if(isset($_FILES["immagine"])){
+	$temp = explode("\\", $_POST["titolo"]);	
+	$len = count($temp) -1;
+	$titolo = time() . $temp[$len];
+	$img_folder = $_SERVER["DOCUMENT_ROOT"] . "/esoes/uploads/";
+	move_uploaded_file($_FILES["immagine"]["tmp_name"], $img_folder . $titolo );
+	
+	$stmt = $conn->prepare("SELECT id_img, src FROM immagini, clown WHERE id = id_img AND user = ?");
+	$stmt->bind_param("s", $_SESSION["user"]);
+	$stmt->execute();
+	$stmt->bind_result($id, $img);
+	$stmt->fetch();
+	//echo $img_folder . $img;
+	unlink($img_folder . $img);
+	
+	$conn->close();
+	$conn = connectDb();
+	$stmt = $conn->prepare("DELETE FROM immagini WHERE id = ?");
+	echo $conn->error;
+	$stmt->bind_param("i", $id);
+	$stmt->execute();
+	
+	$stmt = $conn->prepare("INSERT INTO immagini VALUES (NULL, ?, 'U')");
+	$stmt->bind_param("s", $titolo);
+	$stmt->execute();
+	
+	$stmt = $conn->prepare("UPDATE clown SET id_img = (SELECT MAX(id) FROM immagini) WHERE user=?");
+	$stmt->bind_param("s", $_SESSION["user"]);
+	$stmt->execute();
 	echo "0";
+}
+
+if(isset($_POST["delete"])){
+	$stmt = $conn->prepare("DELETE from utenti where user = ?");
+	$stmt->bind_param("s", $_SESSION["user"]);
+	$stmt->execute();
+
+	$stmt = $conn->prepare("DELETE from clown where user = ?");
+	$stmt->bind_param("s", $_SESSION["user"]);
+	$stmt->execute();
+
+	unset($_SESSION["user"]);
+	unset($_SESSION["pwd"]);
+	unset($_SESSION["permission"]);
+
+	echo "0";
+
 }
 
 $conn->close();

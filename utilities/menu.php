@@ -38,7 +38,7 @@ include $_SERVER["DOCUMENT_ROOT"]."/esoes/utilities/divAccedi.html"; ?>
         </a>  
         <ul class="dropdown-menu">
           <li><a class="dropdown-item" href="/esoes/news">News</a></li>
-          <li><a class="dropdown-item" href="/esoes/eventi">Eventi</a></li>
+          <li><a class="dropdown-item" href="/esoes/event">Eventi</a></li>
         </ul>
       </li>
        <li class="nav-item dropdown">

@@ -1,11 +1,16 @@
-<?php require $_SERVER["DOCUMENT_ROOT"] . "/esoes/area_riservata/check_login.php";?>
+<?php
+	$permission = 2; 
+	require $_SERVER["DOCUMENT_ROOT"] . "/esoes/area_riservata/check_login.php";
+?>
 
 <!DOCTYPE html>
 <html>
    <head>
       <meta charset="utf-8">
-      <?php include $_SERVER["DOCUMENT_ROOT"] . "/esoes/utilities/imports.html" ?>
-      <?php include $_SERVER["DOCUMENT_ROOT"] . "/esoes/area_riservata/imports_riservata.html"; ?>
+      <?php 
+      		include $_SERVER["DOCUMENT_ROOT"] . "/esoes/utilities/imports.html";
+      		include $_SERVER["DOCUMENT_ROOT"] . "/esoes/area_riservata/imports_riservata.html"; 
+      	?>
       <title>ESO ES Onlus | Modifica Articolo</title>
       <link href='style.css' rel='stylesheet' />
       <script type="text/javascript" src="/esoes/js/tinymce/tinymce.min.js"></script>
@@ -35,6 +40,7 @@
 					<input type="text" id="txt-titolo" class="form-control col-sm-10" disabled="true">
 				</div>
 				<br>
+				<button id="elimina" class="btn btn-link red float-right">Elimina</button>
 				<label>Testo</label>
 				<textarea id="testo" name="testo" class="form-control" rows="15" contenteditable="true"></textarea>
 				<br>
@@ -45,7 +51,8 @@
 					var titolo; 
 					var tipo;
 					var tosend; //sarebbe il titolo nel caso delle pagine, oppure l'id dell'articolo nel caso degli articoli
-
+					var elimina;
+					
 					function cambiato(){
 						var tipo = document.getElementById("tipo");
 						var req = new XMLHttpRequest();
@@ -108,15 +115,36 @@
 						req.send(data);
 
 					}
-
+					
+					function elimina_pagina(){
+						var req = new XMLHttpRequest();
+						req.open("POST", "delete_article.php");
+						req.onreadystatechange = function(){
+							if(req.readyState == 4 && req.status == 200){
+								var temp = req.responseText;
+								if(temp == "OK"){
+									alert("Motobin");
+								}else{
+									console.log(temp);
+								}
+							}
+						};
+						var data = new FormData();
+						data.append("tipo", tipo.value);
+						data.append("id", titolo.value);
+						req.send(data);
+						location.href =".";
+					}
 
 					window.onload = function(){
 						titolo = document.getElementById("titolo");
 						tipo = document.getElementById("tipo");
+						elimina = document.getElementById("elimina")
 						var submit = document.getElementById("invia");
 						submit.onclick = submit_edit;
 						tipo.onchange = cambiato;													
-						titolo.onchange = title_changed;	
+						titolo.onchange = title_changed;
+						elimina.onclick = elimina_pagina;
 					}						
 				</script>
 	    </div>

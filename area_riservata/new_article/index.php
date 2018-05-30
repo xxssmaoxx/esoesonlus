@@ -1,4 +1,7 @@
-<?php require $_SERVER["DOCUMENT_ROOT"] . "/esoes/area_riservata/check_login.php";?>
+<?php
+	$permission = 2; 
+	require $_SERVER["DOCUMENT_ROOT"] . "/esoes/area_riservata/check_login.php";
+?>
 
 <!DOCTYPE html>
 <html>
@@ -32,6 +35,7 @@
 				<label>Carica un'immagine (facoltativo)</label>
 				<div class="load-image form-control center pointer" id="immagine"><i class=" fa fa-image"></i></div>
 				<input style="" type="file" id ="load" name="load" accept=".jpg, .gif, .png">
+				<img id='img-caricata' src='' >
 				<br>
 				<label>Inserire il testo</label>
 				<textarea id="testo" class="form-control" name = "testo" rows="15" contenteditable="true" ></textarea>
@@ -45,10 +49,20 @@
 		
 	</script>
 	<script>
-		document.getElementById("immagine").addEventListener("click", loadImmagine);
-		function loadImmagine(){
-			document.getElementById("load").click();
+		window.onload = function(){
+			var load = document.getElementById("load");
+			document.getElementById("immagine").addEventListener("click", loadImmagine);
+			
+			function loadImmagine(){
+				load.click();
+			};
+			
+			load.onchange = function(){
+				var temp = this.files[0];
+				document.getElementById("img-caricata").src = URL.createObjectURL(temp);
+			};
 		}
+		
     </script>
    </body>
 </html>

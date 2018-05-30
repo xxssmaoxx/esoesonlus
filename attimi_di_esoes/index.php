@@ -8,6 +8,7 @@
 </head>
 <body>
 	<?php include "../utilities/menu.php" ?>
+	<h2 class="bold title">Attimi di Eso Es</h2>
 	<div class="contenitore">
 		<?php require "./immagini.php"; ?>
 	</div>

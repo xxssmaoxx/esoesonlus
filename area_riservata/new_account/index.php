@@ -3,9 +3,12 @@
 <html>
 <head>
 	<meta charset="utf-8">
-	<?php include $_SERVER["DOCUMENT_ROOT"] . "/esoes/area_riservata/imports_riservata.html"; ?>
-	<?php include $_SERVER["DOCUMENT_ROOT"] . "/esoes/utilities/imports.html" ?>
-	<?php require $_SERVER["DOCUMENT_ROOT"] . "/esoes/area_riservata/check_login.php" ?>
+	<?php
+		$permission = 1;
+		include $_SERVER["DOCUMENT_ROOT"] . "/esoes/area_riservata/imports_riservata.html";
+		include $_SERVER["DOCUMENT_ROOT"] . "/esoes/utilities/imports.html";
+		require $_SERVER["DOCUMENT_ROOT"] . "/esoes/area_riservata/check_login.php"; 
+	?>
 </head>
 
 <body>

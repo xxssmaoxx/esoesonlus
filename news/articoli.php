@@ -2,7 +2,7 @@
 	require $_SERVER["DOCUMENT_ROOT"] . "/esoes/utilities/connectDb.php";
 
 	$conn = connectDb();
-	$stmt = $conn->prepare("SELECT src, titolo, testo FROM immagini JOIN pagine ON pagine.id_img = immagini.id JOIN articoli ON pagine.id = articoli.id_pagine WHERE pagine.tipo='A' ORDER BY pagine.id DESC");
+	$stmt = $conn->prepare("SELECT src, titolo, testo FROM immagini JOIN pagine ON pagine.id_img = immagini.id JOIN articoli ON pagine.id = articoli.id_pagine WHERE (pagine.tipo='A' OR pagine.tipo = 'H') ORDER BY pagine.id DESC");
 	$res = $stmt->execute();
 	$res = $stmt->bind_result($src, $titolo, $testo);
 

@@ -14,6 +14,8 @@ var cancelName = document.getElementById("cancel-name");
 var cancelFrase = document.getElementById("cancel-frase");
 var subPwd = document.getElementById("submit-pwd");
 var popup = $("#popup");
+var img_load = $("#img_load");
+var cropper;
 //array with values for establish what are the current active "forms" indexes : 0 name, 1 password, 2 sentence, 3 mail
 var active = [0, 0, 0, 0];
 
@@ -183,7 +185,7 @@ subPwd.onclick = function(){
     if(inputPwdNew.value == inputPwdConfirm.value){
         var req = new XMLHttpRequest();
         var data = new FormData();
-        req.open("POST", "change.php");
+        req.open("POST", "../change.php");
         req.onreadystatechange = function(){
             if(req.readyState == 4 && req.status == 200){
                 if (req.responseText == "0") {
@@ -201,36 +203,25 @@ subPwd.onclick = function(){
 }
 
 
-/*
-document.getElementById("image").onchange = function(){ 
-     var file = image.files[0];
-        console.log(file);
-        if(file != undefined){
-            var data = new FormData();
-            var req = new XMLHttpRequest();
-            data.append("image", file, file.name);
-            req.open("POST", "change.php");
-            req.onreadystatechange = function(){
-                if(req.status == 200){
-                    if(req.responseText == "0"){
-                        alert("Immagine cambiata correttamente");
-                        //location.replace(".");
-                    }else{
-                        console.log(req.responseText);
-                        alert("Errore durante il caricamento dell'immagine");
-                    }
-                }
-            }
-            req.send(data);    
-        }
-        
-    }
-*/
-
 $("#cambia_immagine").on("click", function(){
-    popup.show();
+    var dio = window.open('./cropper?dim=4/3&dest=/esoes/area_riservata/change.php', '_blank', 'location=yes'); 
+	dio.focus();
 });
 
-$("#btn-hide").on("click", function(){
-    popup.hide();
+$("#delete-myself").on("click", function(){
+	var req = new XMLHttpRequest();
+	var data = new FormData();
+	req.open("POST", "/esoes/area_riservata/change.php");
+	req.onreadystatechange = function(){
+		if(req.readyState == 4 && req.status == 200){
+			if (req.responseText == "0") {
+                    alert("Non esisto più");
+					location.href = "/esoes";           
+			} else {
+				console.log(req.responseText);
+			}
+		}
+	}
+	data.append("delete", "Dio caneeee");
+	req.send(data); 
 });

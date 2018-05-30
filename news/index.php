@@ -7,7 +7,9 @@
 	<?php include "../utilities/imports.html"; ?>
 </head>
 <body>
-	<?php include "../utilities/menu.php" ?>
+
+	<?php include "../utilities/menu.php"; ?>
+	<h2 class="bold title">News</h2>
 	<div class="container">
 		<?php
 			$_SESSION["riservata"] = false;
@@ -22,6 +24,6 @@
 			temp.parent().next(".testo").slideToggle();
 		});
 	</script>
-	<?php include "../utilities/footer.html" ?>
+	<?php include "../utilities/footer.html"; ?>
 </body>
 </html>

@@ -32,6 +32,7 @@ a .nome{
 	border-radius: 12px;
 	margin: 10px;
 	width: 220px;
+	height: 270px;
 	background-color: white;
 	box-shadow: 3px 6px 10px #AAAAAA;
 	display: inline-block;
@@ -56,8 +57,9 @@ a .nome{
 }
 
 .img-clown{
+	margin-top: 30px;
 	width: 180px;
-	height: 160px;
+	height: 135px;
 }
 
 .delete-user{
@@ -66,7 +68,6 @@ a .nome{
 	opacity: 0.8;
 }
 
-.x{
-	width: 100%;
-	height: 20px;
+.frase{
+	display: none;
 }

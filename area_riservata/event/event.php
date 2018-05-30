@@ -4,31 +4,41 @@
 
 	$user = $_SESSION['user'];
 	$event_id = $_POST["id"];
+	$elimina = $_POST["presenza"];
+	if($elimina == "true"){
+		$conn = connectDb();
 
-	//Query per recuperare il nome clown
-	$conn = connectDb();
-    $stmt = $conn->prepare("SELECT nome_clown FROM clown WHERE user=?");
-    $stmt->bind_param("s", $user);
-    $stmt->execute();
-    $stmt->bind_result($clown_name);
-    $stmt->fetch();
+		$stmt = $conn->prepare("DELETE FROM presenze WHERE user = ? AND id_evento = ?");
 
-    $stmt->close();
-    $conn->close();
+		if($stmt){
+			$stmt->bind_param('si', $user, $event_id);
+		}else{
+			echo $conn->error;
+		}
 
-    $conn = connectDb();
+		if(!$stmt->execute()){
+			exit("Errore durante l'esecuzione della query : " . $stmt->error);
+		}
 
-	$stmt = $conn->prepare("INSERT INTO presenze VALUES(?, ?)");
+		echo "0";
 
-	if($stmt){
-		$stmt->bind_param('si', $clown_name, $event_id);
 	}else{
-		echo $conn->error;
+
+	    $conn = connectDb();
+
+		$stmt = $conn->prepare("INSERT INTO presenze VALUES(?, ?)");
+
+		if($stmt){
+			$stmt->bind_param('si', $user, $event_id);
+		}else{
+			echo $conn->error;
+		}
+
+		if(!$stmt->execute()){
+			exit("Errore durante l'esecuzione della query : " . $stmt->error);
+		}
+
+		echo "0";
 	}
 
-	if(!$stmt->execute()){
-		exit("Errore durante l'esecuzione della query : " . $stmt->error);
-	}
-
-	echo "0";
 ?>

@@ -1,0 +1,3 @@
+ <?php 
+ 	$permission = 3;
+ ?>

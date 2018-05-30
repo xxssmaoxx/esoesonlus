@@ -1,34 +1,41 @@
-<?php require "check_login.php";?>
+<?php 
+    $permission = 3;
+    require "check_login.php";
+?>
 
 <!DOCTYPE html>
 <html>
 
 <head>
     <meta charset="utf-8">
-    <?php 
-        include "./imports_riservata.html";
+    <?php
         include $_SERVER["DOCUMENT_ROOT"] . "/esoes/utilities/imports.html";
+		include "./imports_riservata.html";
         require $_SERVER["DOCUMENT_ROOT"] . "/esoes/utilities/connectDb.php";
         ?>
     <title>ESO ES Onlus | Area Riservata</title>
     <link href='./css/home.css' rel='stylesheet' />
+    <style>
+    #popup{
+    	width: auto;
+    }
+    #img_load{
+    	max-width: 100%;
+    }
+
+    .cropper-crop{
+    	margin: 30px 0;
+    }
+    </style>
 </head>
 
 <body>
     <div class="esterno">
         <?php include "menu.php"; ?>
         <div class="contenitore text-center">
-
-            
-            <div id="popup">
-                <span id="btn-hide" class="fas fa-angle-up"></span>
-                <strong>Selezionare l'immagine da caricare</strong>
-                <input type="file" id="image" class="float-right">
-                <img src="">
-            </div>
             <img src= <?php 
                 $conn = connectDb();
-                $stmt = $conn->prepare("SELECT immagini.src FROM immagini JOIN clown ON immagini.id = clown.id_img WHERE user=?");
+                $stmt = $conn->prepare("SELECT src FROM immagini JOIN clown ON immagini.id = clown.id_img WHERE user=?");
                 echo $conn->error;
                 $stmt->bind_param("s", $_SESSION['user']);
                 echo $stmt->error;
@@ -38,8 +45,9 @@
                 echo  "\"/esoes/uploads/$img\"";
             ?>
             class="img-profilo center">
-            <button id="cambia_immagine" class="btn btn-primary float-right">Cambia immagine</button>
-            <br>
+            <button id="cambia_immagine"  class="btn btn-primary float-right">Cambia immagine</button>
+            <br><br>
+			<hr>
             <h1 id="clown-name" class="red center bold" contenteditable="false">
             <?php 
                 $conn = connectDb();
@@ -55,7 +63,8 @@
                 <button id="submit-name" class="btn btn-primary">Cambia nome</button><button id="cancel-name" class="btn btn-danger" style="display:none;">Annulla</button><br>
                 <span id="change-pwd" class="text-right">o <a href="#new-pwd" class="blue">Cambia password</a></span>
             </div>
-
+		    <br>
+			<hr>
             <p id="mail" contenteditable="false">
             <?php 
                 $conn = connectDb();
@@ -67,10 +76,11 @@
                 echo $mail;
             ?>
             </p>
+			
             <div class="text-right">
                 <button id="change-mail" class="btn btn-primary">Cambia E-mail</button><button id="cancel-mail" class="btn btn-danger" style="display:none;">Annulla</button><br>
             </div>
-
+			<hr>
             <form id="pwd" class="text_center" style="display:none; margin:auto;">
                 <span class="bold">Inserire la nuova password:</span> <input type="password" id="new-pwd" class="text_input small_text"></p>
                 <span class="bold">Confermare la nuova password:</span><input type="password" id="confirm-pwd" class="text_input small_text">
@@ -93,13 +103,17 @@
                 ?>
             </div>
             <div class="text-right">
-                <button id="submit-frase" class="btn btn-primary text-right">Cambia la tua frase</button><button id="cancel-frase" class="btn btn-danger" style="display:none;">Annulla</button>
+                <button id="submit-frase" class="btn btn-primary">Cambia la tua frase</button><button id="cancel-frase" class="btn btn-danger" style="display:none;">Annulla</button>
             </div>
-        </div>
+			
+			<button id="delete-myself" class="btn btn-danger float-right">Cancella questo profilo</button>
+
     </div>
-            <?php
+	</div>
+		 <?php
                 $conn = connectDb();
-                $stmt = $conn->prepare("SELECT descrizione, luogo, indirizzo, data, ora_inizio FROM eventi JOIN presenze ON eventi.id = presenze.id_evento WHERE user=? ORDER BY data, ora_inizio");
+                $stmt = $conn->prepare("SELECT descrizione, luogo, indirizzo, data, ora_inizio FROM eventi JOIN presenze ON eventi.id = presenze.id_evento WHERE user=? 
+                    AND now() <=  data ORDER BY data, ora_inizio");
                 $stmt->bind_param("s", $_SESSION["user"]);
                 $stmt->execute();
                 $stmt->bind_result($descrizione, $luogo, $indirizzo, $data, $ora_inizio);
@@ -109,7 +123,7 @@
                 	$has_event = true;
                 	echo "
                 		<div class=\"presenze\">
-					        <h3>*** Eventi a cui partecipi ***</h3>
+					        <h3>Eventi a cui partecipi</h3>
 					        <table class=\"table\">
 					            <thead class=\"bg-blue white\">
 					                <tr>
@@ -152,6 +166,7 @@
                 }
 
             ?>
+           
             
     <script src="./js/home.js"></script>
 </body>

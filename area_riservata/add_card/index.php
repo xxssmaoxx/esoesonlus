@@ -1,13 +1,17 @@
-<?php require $_SERVER["DOCUMENT_ROOT"] . "/esoes/area_riservata/check_login.php";?>
+<?php
+	$permission = 1;
+	require $_SERVER["DOCUMENT_ROOT"] . "/esoes/area_riservata/check_login.php";
+?>
 
 <!DOCTYPE HTML>
 <html>
 <head>
 	<title>EsoEs Onlus | Aggiungi Clown</title>
 	<meta charset="utf-8">	
-	<?php include $_SERVER["DOCUMENT_ROOT"] . "/esoes/utilities/imports.html" ?>
-
-	<?php include $_SERVER["DOCUMENT_ROOT"] . "/esoes/area_riservata/imports_riservata.html" ?>
+	<?php
+		include $_SERVER["DOCUMENT_ROOT"] . "/esoes/utilities/imports.html";
+		include $_SERVER["DOCUMENT_ROOT"] . "/esoes/area_riservata/imports_riservata.html"; 
+	?>
 	<link href='./style.css' rel='stylesheet' />
 </head>
 <body>

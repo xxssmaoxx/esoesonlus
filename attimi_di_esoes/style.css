@@ -1,5 +1,14 @@
+.title{
+	margin-top: 2%;
+	text-align: center;
+}
+
 .img{
 	padding: 2px;
+	width: 20vw;
+	min-width: 90px;
+	min-height: 90px;
+	height: 20vw;
 }
 
 .contenitore{
@@ -28,4 +37,46 @@
 .fa-chevron-down{
 	font-size: 2em;
 	vertical-align: -10px;
+}
+
+.popup{
+	background-color: #222222;
+	width: 100%;
+	padding: 50px;
+	text-align: center;
+	position: fixed;
+	top: 20px;
+	bottom: 50px;
+	vertical-align: middle;
+}
+
+.change-img{
+	font-size: 3em;
+}
+
+.prev{
+	vertical-align: middle;
+}
+
+.next{
+	vertical-align: middle;
+}
+
+.content{
+	margin: 0px 50px 0px 38px;
+	height: 100%;
+}
+
+.angle{
+	width: 24px;
+	height: 100%;
+	display: inline-block;
+}
+
+.fix-width{
+	width: 100%;
+}
+
+.fix-height{
+	height: 100%;
 }

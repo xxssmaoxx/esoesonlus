@@ -1,3 +1,7 @@
+#img-caricata{
+	max-width: 100%;
+}
+
 #testo{
   width:100%;
 }
@@ -19,7 +23,9 @@ input{
   display:block;
   margin:auto;
   text-align:center;
+  margin-bottom: 3%;
 }
+
 .formatter{
   display: inline-block;
   width: 30px;

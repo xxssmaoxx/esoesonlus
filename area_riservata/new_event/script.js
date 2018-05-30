@@ -22,6 +22,7 @@ confirm.onclick = function(){
 	var indirizzo = document.getElementById("indirizzo");
 	var data = document.getElementById("datepicker");
 	var tipo = document.getElementById("tipo")
+	var ora = document.getElementById("timepicker");
 
 
 	var req = new XMLHttpRequest();
@@ -38,6 +39,6 @@ confirm.onclick = function(){
 			}
 		}
 	};
-	req.send("titolo=" + titolo.value + "&luogo=" + luogo.value + "&indirizzo=" + indirizzo.value + "&giorno=" + data.value + "&tipo=" + tipo.value);
+	req.send("titolo=" + titolo.value + "&luogo=" + luogo.value + "&indirizzo=" + indirizzo.value + "&giorno=" + data.value + "&tipo=" + tipo.value + "&ora=" + ora.value);
 
 };
