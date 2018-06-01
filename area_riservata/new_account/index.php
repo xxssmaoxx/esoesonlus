@@ -2,11 +2,12 @@
 
 <html>
 <head>
+	<title>ESO ES Onlus | Crea nuovo account </title>
 	<meta charset="utf-8">
 	<?php
 		$permission = 1;
-		include $_SERVER["DOCUMENT_ROOT"] . "/esoes/area_riservata/imports_riservata.html";
 		include $_SERVER["DOCUMENT_ROOT"] . "/esoes/utilities/imports.html";
+		include $_SERVER["DOCUMENT_ROOT"] . "/esoes/area_riservata/imports_riservata.html";		
 		require $_SERVER["DOCUMENT_ROOT"] . "/esoes/area_riservata/check_login.php"; 
 	?>
 </head>

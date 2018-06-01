@@ -4,50 +4,16 @@
 		<meta charset="utf-8">
 		<title>ESO ES Onlus | Eventi</title>
 		<?php 
+			/* SETTINGS */
 			$permission = 3;
+			$allenamenti = true;
+			
         	include $_SERVER["DOCUMENT_ROOT"] . "/esoes/utilities/imports.html"; 
 			include "../imports_riservata.html";
 			require $_SERVER["DOCUMENT_ROOT"] . "/esoes/utilities/importsCalendar.html"; 
 			require "../check_login.php";
-			require $_SERVER["DOCUMENT_ROOT"] . "/esoes/utilities/connectDb.php";
-			$conn = connectDb();
-			$stmt = $conn->prepare("SELECT id, descrizione, luogo, indirizzo, data, ora_inizio, (CASE presenze.user WHEN ? THEN 1 ELSE 0 END) FROM eventi LEFT JOIN presenze ON eventi.id = presenze.id_evento");
-			echo $conn->error;
-			$res = $stmt->bind_param("s", $_SESSION["user"]);
-			$res = $stmt->execute();
-			$stmt->bind_result($event_id, $descrizione, $luogo, $indirizzo, $data, $ora_inizio, $presenza);
-
-			echo "<script type=\"text/javascript\">
-					$(document).ready(function(){
-						$('#calendario').fullCalendar({
-							locale: 'it',
-							themeSystem: 'bootstrap4',
-							header: {
-								left: 'prev',
-								center: 'title',
-								right: 'next'
-							},
-							events: [";			
-			
-			while(!is_null($stmt->fetch())){
-				echo "	{
-							title: '$descrizione',
-							start: '$data',
-							ora: '$ora_inizio',
-							luogo: '$luogo',
-							indirizzo: '$indirizzo',
-							id: '$event_id',
-							presenza: $presenza
-						},";
-			}
-			echo "],
-				eventClick: function(event) {
-					setPopupCont(event);
-				}
-			});
-		});
-
-			</script>"; 
+			require $_SERVER["DOCUMENT_ROOT"] . "/esoes/utilities/connectDb.php";			
+			require $_SERVER["DOCUMENT_ROOT"] . "/esoes/utilities/get_eventi.php";
 		?>
 
 	<link rel="stylesheet" type="text/css" href="./style.css">
@@ -58,7 +24,7 @@
 	</style>
 	</head>
 	<body>
-		<div id="popup">
+		<div class="popup" id="popup">
 			<div id="btn-hide" class="fa fa-angle-up"></div>
 			<div class="descrizione bold"></div>
 			<div class="evento">
@@ -70,7 +36,7 @@
 				</div>
 			</div>
 			<p class="conferma">clicca qui per registrarti all'evento</p>
-			<button class="btn btn-success sign-in">Registrati!</button>
+			<button class="btn sign-in"></button>
 		</div>
 		<div class="esterno" id="esterno">
 			<?php include "../menu.php"; ?>

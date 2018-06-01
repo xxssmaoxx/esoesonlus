@@ -12,7 +12,7 @@
       <?php include $_SERVER["DOCUMENT_ROOT"] . "/esoes/utilities/imports.html";
       		include $_SERVER["DOCUMENT_ROOT"] . "/esoes/area_riservata/imports_riservata.html"; 
       ?>
-      <title>ESO ES Onlus | Modifica Articolo</title>
+      <title>ESO ES Onlus | Gestisci homepage</title>
       <link href='style.css' rel='stylesheet' />
    <body>
    <div class="esterno">

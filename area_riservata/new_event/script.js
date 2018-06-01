@@ -10,7 +10,8 @@ $(document).ready(function(){
 	  )
 	);
 	$("#timepicker").wickedpicker({
-		twentyFour: true
+		twentyFour: true,
+		title: "Ora di inizio"
 	});
 });
 

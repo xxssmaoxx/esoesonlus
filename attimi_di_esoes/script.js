@@ -49,7 +49,7 @@ img.on("click", function(e){
 	indexImg = ($(this).parent().index()*25)+($(this).index());
 	if(node == undefined){
 		node = document.createElement("div");
-		$(node).addClass("popup");
+		$(node).addClass("popup-img");
 		content = document.createElement("div");
 		$(content).addClass("content");
 		angleLeft = createSpan(["fa", "fa-angle-left", "gray", "change-img", "prev", "float-left"]);

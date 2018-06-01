@@ -35,10 +35,12 @@ html, body{
 .esterno{
 	display: flex;
 	align-content: space-around;
+	
 }
 
 .sidebar{
 	width: 30%;
+	height: 300vh;
 	float: left;
 	max-width: 400px;
 	min-width: 200px;
@@ -50,11 +52,11 @@ html, body{
 }
 
 .contenitore{
+	margin: 0;
 	padding-top: 30px;
-	margin: 0 5%;
+	padding: 0 5%;
 	height: 100%;
 	width: 70%;
-	float: right;
 }
 
 #logout{
@@ -78,7 +80,7 @@ html, body{
 	}
 
 	.contenitore{
-		width: 90%;
+		width: 100%;
 		margin: 0;
 	}
 }

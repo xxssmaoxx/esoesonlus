@@ -11,9 +11,11 @@ var popup = $("#popup");
 
 		function setPopupCont(calEvent){
 			if(calEvent.presenza){
-				registrati.toggleClass("btn-success");
-				registrati.toggleClass("btn-danger");
+				registrati.addClass("btn-danger");
 				registrati.html("Annulla Iscrizione");
+			}else{
+				registrati.addClass("btn-success");
+				registrati.html("Registrati");
 			}
 			desc.html(calEvent.title);
 			$(".luogo").html(calEvent.luogo + "; " + calEvent.indirizzo);
@@ -33,13 +35,13 @@ var popup = $("#popup");
 					console.log(req.responseText);
 					if(req.responseText == "0"){
 						if(drop){
-							alert("La tua isrizione all'evento: " + desc.html() + " è stata eliminata");
+							alert("La tua iscrizione all'evento: " + desc.html() + " è stata eliminata");
 						}else{
 							alert("Sei stato iscritto all'evento: " + desc.html());
 						}
 						location.href=".";
 					}else{
-						alert("E' morto Napoleone");
+						alert("E' morto Napoleone Bonaparte");
 					}
 				}
 			};

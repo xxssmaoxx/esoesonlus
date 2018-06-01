@@ -15,7 +15,7 @@
 	<link href='./style.css' rel='stylesheet' />
 </head>
 <body>
-	<div id="popup">
+	<div class="popup" id="popup">
 	<div id="btn-hide" class="fa fa-angle-up"></div>
 		<div class="descrizione">
 			
@@ -46,8 +46,8 @@
 		show.on("click", function(e){
 			popup.toggle();
 			//recupero il nome del clown per metterlo nel popup
-			var name = $(e.target).next().children().next().html();
-			$(".descrizione").html("Sei sicuro di voler eliminare l'utente di " + name + " ?");
+			var name = $(e.target).parents(".carte").children(".info").children(".name").html();
+			$(".descrizione").html("Sei sicuro di voler eliminare l'utente di <b>" + name + "</b> ?");
 			//recupero l'id del bottone cliccato
 			confirm.data("name", $(e.target).attr("id"));
 		});

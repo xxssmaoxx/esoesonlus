@@ -1,5 +1,5 @@
 <?php
-	$permission = 1;
+	$permission = 3;
 	require $_SERVER["DOCUMENT_ROOT"] . "/esoes/area_riservata/check_login.php";
 	include $_SERVER["DOCUMENT_ROOT"] . "/esoes/area_riservata/imports_riservata.html";
     include $_SERVER["DOCUMENT_ROOT"] . "/esoes/utilities/imports.html";
@@ -18,16 +18,12 @@
 <body>
 	<h2 class="bold title">Ritaglia l'immagine</h2>
 	<div class="contenitore">
-
-		<div class="row">
 			<input type="file" class="col-sm-4" id="choose-img">
-		</div>
-		<div class="row">
+			<br>
 			<button class="btn btn-primary col-sm-2" id="load-image">Ritaglia</button>
 			<button class="btn btn-danger col-sm-2" id="annulla">Annulla</button>
-		</div>
-        <img id="img_load" src="">
-
+			<br>
+        	<img id="img_load" src="">
 	</div>
 	<script>
 		$("#load-image").on("click",function(){

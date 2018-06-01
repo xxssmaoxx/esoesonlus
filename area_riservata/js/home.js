@@ -135,7 +135,7 @@ changeFrase.onclick = function(e) {
             active[2] = 0;
             var req = new XMLHttpRequest();
             var data = new FormData();
-            req.open("POST", "./change.php");
+            req.open("POST", "/esoes/area_riservata/change.php");
             req.onreadystatechange = function() {
                 //4 is a constant , there are 4 status in a XMLHttpRequest object, 4 means DONE 
                 if (req.readyState == 4 && req.status == 200) {
@@ -182,10 +182,11 @@ cancelFrase.onclick = function(e) {
 }
 
 subPwd.onclick = function(){
+
     if(inputPwdNew.value == inputPwdConfirm.value){
         var req = new XMLHttpRequest();
-        var data = new FormData();
-        req.open("POST", "../change.php");
+        req.open("POST", "/esoes/area_riservata/change.php");
+        req.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
         req.onreadystatechange = function(){
             if(req.readyState == 4 && req.status == 200){
                 if (req.responseText == "0") {
@@ -197,15 +198,17 @@ subPwd.onclick = function(){
                 }
             }
         }
-        data.append("pwd", inputPwdNew.value);
-        req.send(data);                            
+        req.send("pwd="+ inputPwdNew.value); 
+        console.log("inviato" + inputPwdNew.value);                           
+    }else{
+        console.log(inputPwdNew.value + inputPwdConfirm.value);
     }
 }
 
 
 $("#cambia_immagine").on("click", function(){
-    var dio = window.open('./cropper?dim=4/3&dest=/esoes/area_riservata/change.php', '_blank', 'location=yes'); 
-	dio.focus();
+    var win = window.open('./cropper?dim=4/3&dest=/esoes/area_riservata/change.php', '_blank', 'location=yes'); 
+	win.focus();
 });
 
 $("#delete-myself").on("click", function(){

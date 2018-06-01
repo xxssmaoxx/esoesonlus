@@ -5,7 +5,7 @@ include $_SERVER["DOCUMENT_ROOT"]."/esoes/utilities/divAccedi.html"; ?>
 
 <div id="header">
   <a href="/esoes/index.php"><img src="/esoes/img/home/esoes_logo.png" class="logo animated bounceInDown"></a>
-  <a id="btn-accedi" class="desktop btn btn-primary navbar-btn pointer animated bounceInDown"><i class="far fa-user">&nbsp;</i> Accedi</a>
+  <a id="btn-accedi" class="desktop btn btn-primary navbar-btn pointer animated bounceInDown" data-target="#pop-acced" data-toggle="modal"><i class="far fa-user">&nbsp;</i> Accedi</a>
 </div>
 
 
@@ -13,7 +13,7 @@ include $_SERVER["DOCUMENT_ROOT"]."/esoes/utilities/divAccedi.html"; ?>
   <button class="black navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown">
     <span class="navbar-toggler-icon"></span>
   </button>
-  <a class="mobile btn btn-primary" id="menu-btn-accedi"><i class="fa fa-user">&nbsp;</i> Accedi</a>
+  <a class="mobile btn btn-primary" id="menu-btn-accedi" data-target="#pop-acced" data-toggle="modal"><i class="fa fa-user">&nbsp;</i> Accedi</a>
   <div class="collapse navbar-collapse" id="navbarNavDropdown">
     <ul class="navbar-nav">
       <li class="nav-item">
@@ -108,34 +108,32 @@ $('.dropdown-menu a.dropdown-toggle').on('click', function(e) {
   return false;
 });
   
-
+/*recupero gli elementi della pagina*/
+//bottone di accesso (schermo piccolo)
 var menuBtnShow = document.getElementById("menu-btn-accedi");
+//bottone di accesso (schermo grande)
 var show = document.getElementById("btn-accedi");
-var popup = document.getElementById("popup");
+//popup per effettuare l'accesso
+var pop_accedi = document.getElementById("pop-accedi");
+//bottone per chiudere il popup
 var hide = document.getElementById("btn-hide");
 
 
-<?php 
+<?php
+/*controllo se l'utente ha già effettuato l'accesso*/
   if(isset($_SESSION["user"])){
-
+  	/*nel caso in cui l'accesso è già stato effettuato imposto la scritta "Area riservata" nel bottone e non mostro più il popup
+  	*ma mando direttamente all'area riservata*/
     $span = "Area riservata";
 
     echo "menuBtnShow.innerHTML = '<i class=\"far fa-user\"></i><span style=\"font-family:sans-serif\"> $span</span>';
           menuBtnShow.href = '/esoes/area_riservata/';
           show.innerHTML = '<i class=\"far fa-user\"></i><span style=\"font-family:sans-serif\"> $span</span>';
-          show.href = '/esoes/area_riservata/';";
-  }else{
-    echo "show.onclick = function(){
-            $(popup).fadeToggle();
-          }
-
-          menuBtnShow.onclick = function(){
-            $(popup).fadeToggle();
-          } 
-
-          hide.onclick = function(){
-            $(popup).fadeToggle() ;
-          }";
+          show.href = '/esoes/area_riservata/';
+	  show.dataset.target = undefined;
+  	  show.dataset.toggle = undefined;
+	  menuBtnShow.dataset.toggle = undefined;
+	  menuBtnShow.dataset.target = undefined;";
   }
 
   ?>

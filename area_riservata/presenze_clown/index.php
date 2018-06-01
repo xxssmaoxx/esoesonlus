@@ -13,7 +13,7 @@
         include $_SERVER["DOCUMENT_ROOT"] . "/esoes/area_riservata/imports_riservata.html";        
         require $_SERVER["DOCUMENT_ROOT"] . "/esoes/utilities/connectDb.php";
         ?>
-    <title>ESO ES Onlus | Area Riservata</title>
+    <title>ESO ES Onlus | Presenze clown</title>
     <link href='./style.css' rel='stylesheet' />
 </head>
 

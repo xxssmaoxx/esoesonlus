@@ -5,19 +5,23 @@ function resize(){
 	max_height = 0;
 	max_title_height = 0;
 	/*
-	*---TITOLO---
-	*calcolo l'altezza massima del titolo delle 3 carte della home page per dare a tutti la stessa altezza ed allineare di conseguenza il testo sottostante
+	*TITOLO
+	*calcolo l'altezza massima del titolo delle 3 carte della home page per dare a tutti la stessa altezza ed 
+	*allineare di conseguenza il testo sottostante
 	*/
 	titolo.each(function() {
 			//rimouvo l'altezza assegnata prima in modo da non avere l'altezza del titolo già assegnata
 			$(this).attr("style", "");
+			//recupero l'altezza del titolo
 			var height = $(this).height();
+			//confronto l'altezza del titolo che ho appena preso in considerazione con quella massima rilevata finora e memorizzo la più grande
 			max_title_height = (height > max_title_height)? height : max_title_height;
 	});
+	//imposto l'altezza a tutti i titoli delle carte
 	titolo.height(max_title_height);
 
 	/*
-	*---CARTE---
+	*CARTE
 	*calcolo l'altezza massima delle 3 carte della home page per dare a tutte la stessa altezza
 	*/
 	carte.each(function() {
@@ -32,6 +36,7 @@ function resize(){
 var cont = $(".contenitore");
 var carte = $(".sezione");
 var titolo = $(".titolo_card");
+
 var win = $(window);
 //al caricamento della pagina richiamo la funzione resize per settare le dimensioni delle carte
 $(document).ready(resize);

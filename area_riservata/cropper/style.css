@@ -1,12 +1,20 @@
 .title{
 	text-align: center;
-	margin-top: 2%;
 }
 
 .contenitore{
-	margin-top: 2%;
+	padding-top: 2%;
+	margin: 0%;
+	width: 100%;
+	float: none;
+	text-align: center;
 }
 
-html, body{
+body{
+	padding-top: 2%;
 	height: 100%;
+}
+
+#choose-img{
+	text-align: center;
 }

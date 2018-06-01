@@ -11,7 +11,7 @@ function invia_immagine(blob, url){
 	req.open("POST", url);
 	req.onreadystatechange = function() {
 		if (req.responseText.trim() == "0") {
-			alert("Dio povero ho caricato l'immagine correttamente");
+			alert("Immagine caricata correttamente");
 			close();
 		}else{
 			console.log(req.readyState + req.responseText);
@@ -29,6 +29,7 @@ function crop_image(image, dim, url) {
 	var temp = $("#load-image");
     if (temp.html() == "Conferma") {
         cropper.getCroppedCanvas().toBlob(function(blob) {
+        		//richiamo la funzione invia_immagine passandogli il blob dell'immagine ritagliata e l'url
                 invia_immagine(blob, url);
 		});
     }else {
@@ -36,8 +37,8 @@ function crop_image(image, dim, url) {
             set_src(image.files[0]);
             var tocrop = $("#img_load");
             tocrop.cropper({
-                aspectRatio: dim, //set the dimension of the image based on the image type
-                background: false, //hide the background grid
+                aspectRatio: dim, //imposto la dimensione della foto
+                background: false, //nascondo la griglia di sfondo
                 maxContainerWidth: 400
             });
             cropper = tocrop.data("cropper");

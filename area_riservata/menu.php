@@ -27,7 +27,7 @@
 				req.onreadystatechange = function(){
 					if(req.readyState == 4 && req.status == 200){
 						alert("Sei stato scollegato");
-						window.location.replace("..");
+						window.location.replace("/esoes");
 					}
 				}
 				req.open("GET", "/esoes/area_riservata/logout.php", true);

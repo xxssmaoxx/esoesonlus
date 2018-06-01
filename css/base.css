@@ -123,8 +123,8 @@ body{
 
 #header{
 	padding: 3% 3% 10% 3% ;
-	background-repeat: no-repeat;
-	background-size: cover;
+	background-repeat: no-repeat !important;
+	background-size: cover !important;
   background: white; /*default*/
 }
 
@@ -225,7 +225,7 @@ a{
 	cursor: pointer;
 }
 
-#popup{
+.popup{
   background-color: #CCC;
   border-radius: 15px;
   border: 1.5px solid black;
@@ -241,7 +241,7 @@ a{
 }
 
 @media screen and (max-width: 665px){
-	#popup{
+	.popup{
 		background-color: #CCC;
 		border-radius: 15px;
 		text-align: center;

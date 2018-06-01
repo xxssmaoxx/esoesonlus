@@ -7,6 +7,12 @@ button {
 	width: 100%;
 	max-width: 700px;
 	border-radius: 10px;
+    border: 1px solid black;
+}
+
+.sezione_riservata{
+	padding-top: 30px !important;
+	border-bottom: 1px dashed black;
 }
 
 #pwd {
@@ -27,7 +33,26 @@ button {
     margin: auto;
 }
 
+.home{
+	border-left: 1px solid black;
+	width: 100%;
+}
 
+#popup{
+	width: auto;
+}
+#img_load{
+	max-width: 100%;
+}
+
+.cropper-crop{
+	margin: 30px 0;
+}
+
+#header_riservata{
+	padding: 0 30px 50px 30px;
+	//padding-bottom: 50px;
+}
 
 
 #mail{
@@ -44,9 +69,6 @@ button {
     margin-bottom: 20px;
 }
 
-#clown-name{
-    margin: 50px 0;
-}
 
 #cambia_immagine{
     display: block;

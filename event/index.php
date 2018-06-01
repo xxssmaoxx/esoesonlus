@@ -3,49 +3,12 @@
 	<head>
 		<meta charset="utf-8">
 		<title>ESO ES Onlus | Eventi</title>
-        <?php include $_SERVER["DOCUMENT_ROOT"] . "/esoes/utilities/imports.html"; ?>
-		<?php require $_SERVER["DOCUMENT_ROOT"] . "/esoes/utilities/importsCalendar.html"; ?>
-		<?php
-		require $_SERVER["DOCUMENT_ROOT"] . "/esoes/utilities/connectDb.php";
-		$conn = connectDb();
-		$stmt = $conn->prepare("SELECT descrizione, luogo, indirizzo, data, ora_inizio FROM eventi WHERE tipo = 'S'");
-		$res = $stmt->execute();
-		$stmt->bind_result($descrizione, $luogo, $indirizzo, $data, $ora_inizio);
-
-		echo "<script type=\"text/javascript\">
-				$(document).ready(function(){
-					$('#calendario').fullCalendar({
-						locale: 'it',
-						themeSystem: 'bootstrap4',
-						header: {
-							left: 'prev',
-							center: 'title',
-							right: 'next'
-						},
-						events: [";
-
-		
-		
-		
-		
-		while(!is_null($stmt->fetch())){
-			echo "	{
-						title: '$descrizione',
-						start: '$data',
-						ora: '$ora_inizio',
-						luogo: '$luogo',
-						indirizzo: '$indirizzo',
-						data: '$data'
-					},";
-		}
-		echo "],
-			eventClick: function(event) {
-				setPopupCont(event);
-			}
-		});
-	});
-
-		</script>"; ?>
+        <?php 
+        	include $_SERVER["DOCUMENT_ROOT"] . "/esoes/utilities/imports.html"; 
+			require $_SERVER["DOCUMENT_ROOT"] . "/esoes/utilities/importsCalendar.html"; 
+			require $_SERVER["DOCUMENT_ROOT"] . "/esoes/utilities/connectDb.php";
+			require $_SERVER["DOCUMENT_ROOT"] . "/esoes/utilities/get_eventi.php";
+		?>
 		<style>
 			#calendario{
 				max-width: 900px;
@@ -74,7 +37,7 @@
 		</style>
 	</head>
 	<body>
-		<div id="popup">
+		<div class="popup" id="popup">
 			<div id="btn-hide" class="fa fa-angle-up"></div>
 			<div class="descrizione bold"></div>
 			<div class="evento">
@@ -82,7 +45,7 @@
 					<p class="col-sm-4">Luogo: </p><p class="col-sm-8 luogo"></p>
 				</div>
 				<div class="row">
-					<p class="col-sm-4">indirizzo: </p><p class="col-sm-8 indirizzo"></p>
+					<p class="col-sm-4">Indirizzo: </p><p class="col-sm-8 indirizzo"></p>
 				</div>
 				<div class="row">
 					<p class="col-sm-4">Ora di inizio: </p><p class="col-sm-8 ora_inizio"></p>
@@ -104,15 +67,21 @@
 		var hide = $("#btn-hide");
 		var desc = $(".descrizione");
 
+		/*Quando si clicca sul bottone con la freccia in alto viene nascosto il popup*/
 		hide.on("click", function(){
 			popup.hide();
 		});
-
+		/*Imposto il contenuto del popup ricevendo l'evento che è stato cliccato*/
 		function setPopupCont(calEvent){
+			//imposto il titolo del popup con il titolo dell'evento
 			desc.html(calEvent.title);
+			//imposto il luogo
 			$(".luogo").html(calEvent.luogo);
+			//imposto l'indirizzo
 			$(".indirizzo").html(calEvent.indirizzo);
+			//imposto l'ora di inizio
 			$(".ora_inizio").html(calEvent.ora);
+			//mostro il popup
 			popup.show();
 		}
 		</script>

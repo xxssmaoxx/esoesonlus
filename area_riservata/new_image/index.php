@@ -10,7 +10,7 @@
       <?php include $_SERVER["DOCUMENT_ROOT"] . "/esoes/utilities/imports.html" ?>
       <?php include $_SERVER["DOCUMENT_ROOT"] . "/esoes/area_riservata/imports_riservata.html"; ?>
 	  <?php include $_SERVER["DOCUMENT_ROOT"] . "/esoes/utilities/importsCropper.html"; ?>
-      <title>ESO ES Onlus | Inserisci Articolo</title>
+      <title>ESO ES Onlus | Inserisci immagine fotogallery</title>
       <link href='style.css' rel='stylesheet' />
       <style>
          .center{

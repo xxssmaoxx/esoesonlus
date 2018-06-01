@@ -1,55 +1,71 @@
-<div id="popup">
-	<div id="btn-hide" class="fas fa-angle-up"></div>
-	<h3 class="bold">Login</h3>
-	<p>&nbsp;</p>
-	<p class="bold">Username: <input type="text" class="text_input small_text" id="user" tabindex="1" required="true"></p>
-	<p class="bold">Password: <input type="password" class="text_input small_text" tabindex="2" id="password" required="true"></p>
-	<input type="checkbox" id="show-pwd" onclick="showPwd()"> <span> Mostra password</span>
-	<p>&nbsp;</p>
-	<input type="button" class="btn btn-primary" value="accedi" id="send">
+<div class="modal fade" id="pop-acced" role="dialog">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                
+                <h4 class="modal-title">Login</h4>
+                <span class="close" data-dismiss="modal">&times;</span>
+            </div>
+            <div class="modal-body">
+                <div>
+                    <label>Username: </label>
+                    <input type="text" class="form-control" id="user" tabindex="1" required="true">
+                </div>
+                <div>
+                    <label>Password: </label>
+                    <input type="password" class="form-control" tabindex="2" id="password" required="true">
+                </div>
+                <input type="checkbox" id="show-pwd" onclick="showPwd()"> <span> Mostra password</span>
+
+            </div>
+            <div class="modal-footer">
+                <input type="button" class="btn btn-primary" value="accedi" id="send">
+                <input type="button" class="btn btn-danger" value="annulla" data-dismiss="modal">
+            </div>
+        </div>
+    </div>
 </div>
 
 <script type="text/javascript">
-	var send = document.getElementById("send");	
-	let user = document.getElementById("user");
-	let password = document.getElementById("password");
-	
-	send.addEventListener("click", checkDataInsert);
-	user.addEventListener("keydown", function(e){
-		if(e.key == "Enter") send.click();
-	});
-	
-	password.addEventListener("keydown", function(e){
-		if(e.key == "Enter") send.click();
-	});
-	
-	function showPwd() {
-	    if (password.type === "password") {
-	        password.type = "text";
-	    } else {
-	        password.type = "password";
-	    }
-	}
-
-	function checkDataInsert(){
-		let user_text = user.value;
-		let password_text = password.value;
-
-		var req = new XMLHttpRequest();
-		req.onreadystatechange = function(){
-			if(req.readyState == 4 && req.status == 200){
-				if(req.responseText == "OK"){
-					window.location.replace("/esoes/area_riservata");
-				}else{
-					alert("Hai inserito una password errata");
-					console.log(req.responseText);
-				}
-			}
-		}
-
-		req.open("POST", "/esoes/area_riservata/login.php", true);
-		req.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-		req.send("user=" + user_text + "&pwd=" + password_text); 
-	}
-
+    var send = document.getElementById("send");	
+            	let user = document.getElementById("user");
+            	let password = document.getElementById("password");
+            	
+            	send.addEventListener("click", checkDataInsert);
+            	user.addEventListener("keydown", function(e){
+            		if(e.key == "Enter") send.click();
+            	});
+            	
+            	password.addEventListener("keydown", function(e){
+            		if(e.key == "Enter") send.click();
+            	});
+            	
+            	function showPwd() {
+            	    if (password.type === "password") {
+            	        password.type = "text";
+            	    } else {
+            	        password.type = "password";
+            	    }
+            	}
+            
+            	function checkDataInsert(){
+            		let user_text = user.value;
+            		let password_text = password.value;
+            
+            		var req = new XMLHttpRequest();
+            		req.onreadystatechange = function(){
+            			if(req.readyState == 4 && req.status == 200){
+            				if(req.responseText == "OK"){
+            					window.location.replace("/esoes/area_riservata");
+            				}else{
+            					alert("Hai inserito una password errata");
+            					console.log(req.responseText);
+            				}
+            			}
+            		}
+            
+            		req.open("POST", "/esoes/area_riservata/login.php", true);
+            		req.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+            		req.send("user=" + user_text + "&pwd=" + password_text); 
+            	}
 </script>
